@@ -1,4 +1,9 @@
 library(httr)
+library("rstudioapi")
+path <- dirname(rstudioapi::getActiveDocumentContext()$path)
+setwd(path)
+
+
 url <- "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX9D_History.csv"
 
 #access to API - VIX
