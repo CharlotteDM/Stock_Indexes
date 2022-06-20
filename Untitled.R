@@ -26,13 +26,6 @@ endpoint_VIX <- "/api/global/us_indices/daily_prices/VIX9D_History.csv"
 resource_uri_VIX <- paste0(base_uri_VIX, endpoint_VIX)
 response_data_VIX <- GET(resource_uri_VIX, query = query_params)
 
-#access to API NASDAQ
-#url <- "https://www.nasdaq.com/market-activity/index/spx/historical"
-#response_NASDAQ <- GET(url)
-#base_uri_NASDAQ <- "https://www.nasdaq.com"
-#endpoint_NASDAQ <- "market-activity/index/spx/historical"
-#resource_uri_NASDAQ <- paste0(base_uri_NASDAQ, endpoint_NASDAQ)
-#response_data_NASDAQ <- GET(resource_uri_NASDAQ, query = query_params)
 
 #loading data: SP500 
 #source of data: https://www.wsj.com/market-data/quotes/index/SPX/historical-prices
@@ -45,3 +38,15 @@ SX5Euro <- read.csv("SX5Euro.csv", stringsAsFactors = F)
 #loading data: FTSE China A50
 #data source: https://www.wsj.com/market-data/quotes/index/XX/XIN9/historical-prices
 FTSE <- read.csv("FTSEChina.csv", stringsAsFactors = F)
+
+#loading data: Dow Jones
+#data source: https://www.wsj.com/market-data/quotes/index/DJIA/historical-prices
+DJ <- read.csv("DowJones.csv", stringsAsFactors = F)
+
+#loading data: NASDAQ
+#data source: https://www.nasdaq.com/market-activity/index/spx/historical
+NASDAQ <-read.csv("NASDAQ.csv", stringsAsFactors = F)
+
+#loading data: NIKKEI 225
+#data source: https://stooq.pl/q/d/?s=%5Enkx&c=0
+NIKKEI <- read.csv("NIKKEI225.csv", stringsAsFactors = F)
