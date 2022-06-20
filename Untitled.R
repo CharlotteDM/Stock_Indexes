@@ -41,3 +41,7 @@ SP500 <- read.csv("S&P.csv", stringsAsFactors = F)
 #loading data: SX5Euro
 #source of data: https://www.wsj.com/market-data/quotes/index/XX/SX5E/historical-prices
 SX5Euro <- read.csv("SX5Euro.csv", stringsAsFactors = F)
+
+#loading data: FTSE China A50
+#data source: https://www.wsj.com/market-data/quotes/index/XX/XIN9/historical-prices
+FTSE <- read.csv("FTSEChina.csv", stringsAsFactors = F)
