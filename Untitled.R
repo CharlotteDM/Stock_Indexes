@@ -37,3 +37,7 @@ response_data_VIX <- GET(resource_uri_VIX, query = query_params)
 #loading data: SP500 
 #source of data: https://www.wsj.com/market-data/quotes/index/SPX/historical-prices
 SP500 <- read.csv("S&P.csv", stringsAsFactors = F)
+
+#loading data: SX5Euro
+#source of data: https://www.wsj.com/market-data/quotes/index/XX/SX5E/historical-prices
+SX5Euro <- read.csv("SX5Euro.csv", stringsAsFactors = F)
