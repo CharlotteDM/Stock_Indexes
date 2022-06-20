@@ -50,3 +50,28 @@ NASDAQ <-read.csv("NASDAQ.csv", stringsAsFactors = F)
 #loading data: NIKKEI 225
 #data source: https://stooq.pl/q/d/?s=%5Enkx&c=0
 NIKKEI <- read.csv("NIKKEI225.csv", stringsAsFactors = F)
+
+#loading data: FTSE 100
+#data source: https://www.wsj.com/market-data/quotes/index/UK/UKX/historical-prices
+FTSE100 <-read.csv("FTSE100.csv", stringsAsFactors = F)
+
+
+#converts character value as a date
+date_convert = function(date_input) {
+
+  if(is.Date(as.Date(date_input, "%Y-%m-%d")))
+  {
+    return(as.Date(date, "%Y-%m-%d"))
+  }
+  else if (is.Date(as.Date(date_input,"%m/%d/%y"))) 
+  { 
+    return(mdy(date))
+  }
+}
+
+SP500$Date <- date_convert(SP500$Date)
+
+as.Date(SP500$Date,"%m/%d/%y")
+
+
+ymd(NIKKEI$Data)
