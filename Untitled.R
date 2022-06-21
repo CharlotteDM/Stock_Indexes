@@ -1,6 +1,7 @@
 library(httr)
 library("rstudioapi")
 library(ggplot2)
+library(plotly)
 library(tidyverse)
 library(lubridate)
 library(dplyr)
@@ -11,8 +12,10 @@ library(forecast)
 library(olsrr)
 library(zoo)
 library(moments)
-library(quantmod)
-
+library(quantmod) ?
+library(tseries)
+library(timetk)
+#install.packages("timetk")
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(path)
@@ -49,7 +52,7 @@ FTSE <- read.csv("FTSEChina.csv", stringsAsFactors = F)
 DJ <- read.csv("DowJones.csv", stringsAsFactors = F)
 
 #loading data: NASDAQ
-#data source: https://www.nasdaq.com/market-activity/index/spx/historical
+#data source: https://www.wsj.com/market-data/quotes/index/NASDAQ/historical-prices
 NASDAQ <-read.csv("NASDAQ.csv", stringsAsFactors = F)
 
 #loading data: NIKKEI 225
@@ -85,13 +88,69 @@ date_convert = function(date_input) {
 
 
 #analysis
-head(SX5Euro)
 
 
-chart_Series(SX5Euro$Close, name = "EURO STOXX 50 Index 02.2020-06.2022")
+
+#?????chart_Series(SX5Euro$Close, name = "EURO STOXX 50 Index 02.2020-06.2022")
+
+### ------- plot for all od indexes
+#new data frame
+
+#1 attempt
+all_indexes <- left_join(VIX, DJ, by='Date') %>%
+  left_join(., FTSE, by='Date') %>%
+  left_join(., FTSE100, by='Date') %>%
+  left_join(., NASDAQ, by='Date') %>%
+  left_join(., NIKKEI, by='Date') %>%
+  left_join(., SP500, by='Date') %>%
+  left_join(., SX5Euro, by='Date')
+
+#2attempt
+max_length <- max(c(length(VIX$Close), length(VIX$Date),length(DJ$Close), length(FTSE$Close),
+                    length(FTSE100$Close), length(NASDAQ$Close), length(NIKKEI$Close),
+                    length(SP500$Close), length(SX5Euro$Close)))    # finding out maximum length because we have unequal lenghts 
+
+
+
+najkrótszy wektor <- z najkrótszym
+
+
+
+all_indexes <- data.frame(VIX$Close = VIX$Close, VIX$Date = VIX$Date, 
+                          DJ$Close,
+                          FTSE$Close,
+                          FTSE100$Close,
+                          NASDAQ$Close,
+                          NIKKEI$Close, 
+                          SP500$Close,
+                          SX5Euro$Clos
+
+allindexes <- cbind.data.frame(VIX$Close, VIX$Date, 
+                         DJ$Close,
+                         FTSE$Close,
+                         FTSE100$Close,
+                         NASDAQ$Close,
+                         NIKKEI$Close, 
+                         SP500$Close,
+                         SX5Euro$Close)
+?data.frame
+
+
+plot_all <- 
+  ggplot(allindexes, aes(x=Date))+
+  geom_line(aes(y=VIX),color="blue")+
+  geom_line(aes(y=DJ),color="violet")+
+  geom_line(aes(y=FTSE),color="pink")+
+  geom_line(aes(y=FTSE100),color="coral") +
+  geom_line(aes(y=NASDAQ),color="greenyellow")+
+  geom_line(aes(y=NIKKEI),color="firebrick1")+
+  geom_line(aes(y=SP500),color="darkorange")+
+  geom_line(aes(y=SX5Euro),color="green")
 
 #time series for SX5Euro
-tsSX5Euro <- ts(SX5Euro$Close)
+tsSX5Euro <- ts(SX5Euro$Close, start=c(2022, 1), freq=12)
+plotTSX5Euro <- plot_time_series(tsSX5Euro, 'EURO STOXX 50 Index')
+
 
 #autocovariance function
 acf(tsSX5Euro)
