@@ -114,15 +114,35 @@ length(NIKKEI$Close) <- length(FTSE$Close)
 
 
 
-all_indexes <- data.frame(VIX$Close = VIX$Close, VIX$Date = VIX$Date, 
-                          DJ$Close = DJ$Close,
-                          FTSE$Close = FTSE$Close,
-                          FTSE100$Close = FTSE100$Close,
-                          NASDAQ$Close = NASDAQ$Close,
-                          NIKKEI$Close = NIKKEI$Close, 
-                          SP500$Close = SP500$Close,
-                          SX5Euro$Close = SX5Euro$Close)
 
+
+#changing columns from df's into separate df
+VIX_Close <- as.data.frame(VIX$Close)
+VIX_Date <- as.data.frame(VIX$Date)
+DJ_Close <- as.data.frame(DJ$Close)
+FTSE_Close <- as.data.frame(FTSE$Close)
+FTSE100_Close <- as.data.frame(FTSE100$Close)
+NASDAQ_Close <- as.data.frame(NASDAQ$Close)
+NIKKEI_Close <- as.data.frame(NIKKEI$Close)
+SP500_Close <- as.data.frame(SP500$Close)
+SX5Euro_Close <- as.data.frame(SX5Euro$Close)
+
+
+all_indexes <- smartbind(VIX_Close, 
+                              VIX_Date, 
+                              DJ_Close,
+                              FTSE_Close,
+                              FTSE100_Close,
+                              NASDAQ_Close,
+                              NIKKEI_Close, 
+                              SP500_Close,
+                              SX5Euro_Close, fill = NA)
+?smartbind
+
+
+
+
+all_indx <- data.frame(matrix(unlist(all_indexes), nrow=length(all_indexes), byrow=TRUE))
 
 
 allindexes <- data.frame(VIX = c(1, 5, NA), DJ = c(5, NA),
@@ -131,8 +151,13 @@ allindexes <- data.frame(VIX = c(1, 5, NA), DJ = c(5, NA),
                          NASDAQ = c(5, NA),
                          NIKKEI = c(5, NA), 
                          SP500 = c(5, NA),
-                         SX5Euro = c(5, NA))
+                         SX5Euro = c(5, NA), all = T)
 
+
+#3attempt
+all_indexes <- data.frame(stock = "VIX", Date = as.Date(row.names(as.data.frame(VIX))), value = VIX$Close)
+DFJPM <- data.frame(stock = "JPM", Date = as.Date(row.names(as.data.frame(JPM))), value = JPM$JPM.Close)
+plotting <- rbind(DFSQ, DFJPM)
 
 
 plot_all <- 
