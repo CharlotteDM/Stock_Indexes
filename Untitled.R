@@ -48,7 +48,7 @@ DJ <- read.csv("DowJones.csv", stringsAsFactors = F)
 NASDAQ <-read.csv("NASDAQ.csv", stringsAsFactors = F)
 
 #loading data: NIKKEI 225
-#data source: https://stooq.pl/q/d/?s=%5Enkx&c=0
+#data source: https://www.wsj.com/market-data/quotes/index/JP/NIK/historical-prices
 NIKKEI <- read.csv("NIKKEI225.csv", stringsAsFactors = F)
 
 #loading data: FTSE 100
@@ -57,6 +57,8 @@ FTSE100 <-read.csv("FTSE100.csv", stringsAsFactors = F)
 
 
 #converts character value as a date
+
+
 date_convert = function(date_input) {
 
   if(is.Date(as.Date(date_input, "%Y-%m-%d")))
