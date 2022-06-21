@@ -11,6 +11,7 @@ library(forecast)
 library(olsrr)
 library(zoo)
 library(moments)
+library(quantmod)
 
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
@@ -81,4 +82,32 @@ date_convert = function(date_input) {
     return(mdy(date))
   }
 }
+
+
+#analysis
+head(SX5Euro)
+
+
+chart_Series(SX5Euro$Close, name = "EURO STOXX 50 Index 02.2020-06.2022")
+
+#time series for SX5Euro
+tsSX5Euro <- ts(SX5Euro$Close)
+
+#autocovariance function
+acf(tsSX5Euro)
+
+#partial autocovariance function
+pacf(tsSX5Euro)
+
+#determining the optimal number of differentiations 
+plot(diff(tsSX5Euro))
+diff(tsSX5Euro)
+ndiffs(tsSX5Euro,test="kpss",alpha=0.05)
+
+#using the auto.arima function
+best_tsSX5Euro <- auto.arima(x = tsSX5Euro)
+best_tsSX5Euro
+
+acf(best_tsSX5Euro$residuals)
+pacf(best_tsSX5Euro$residuals)
 
