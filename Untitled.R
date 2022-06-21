@@ -20,12 +20,16 @@ setwd(path)
 url <- "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX9D_History.csv"
 
 #access to API - VIX
-response_VIX <- GET(url)
-base_uri_VIX <- "https://cdn.cboe.com"
-endpoint_VIX <- "/api/global/us_indices/daily_prices/VIX9D_History.csv"
-resource_uri_VIX <- paste0(base_uri_VIX, endpoint_VIX)
-response_data_VIX <- GET(resource_uri_VIX, query = query_params)
+#response_VIX <- GET(url)
+#base_uri_VIX <- "https://cdn.cboe.com"
+#endpoint_VIX <- "/api/global/us_indices/daily_prices/VIX9D_History.csv"
+#resource_uri_VIX <- paste0(base_uri_VIX, endpoint_VIX)
+#response_data_VIX <- GET(resource_uri_VIX, query = query_params)
 
+
+#loading data: VIX
+#source of data: https://www.wsj.com/market-data/quotes/index/VIX/historical-prices
+VIX <- read.csv("VIX.csv", stringsAsFactors = F)
 
 #loading data: SP500 
 #source of data: https://www.wsj.com/market-data/quotes/index/SPX/historical-prices
@@ -57,7 +61,14 @@ FTSE100 <-read.csv("FTSE100.csv", stringsAsFactors = F)
 
 
 #converts character value as a date
-
+VIX$Date <- mdy(VIX$Date) 
+DJ$Date <- mdy(DJ$Date) 
+FTSE$Date <- mdy(FTSE$Date) 
+FTSE100$Date <- mdy(FTSE100$Date) 
+NASDAQ$Date <- mdy(NASDAQ$Date) 
+NIKKEI$Date <- mdy(NIKKEI$Date) 
+SP500$Date <- mdy(SP500$Date) 
+SX5Euro$Date <- mdy(SX5Euro$Date) 
 
 date_convert = function(date_input) {
 
@@ -71,9 +82,3 @@ date_convert = function(date_input) {
   }
 }
 
-SP500$Date <- date_convert(SP500$Date)
-
-as.Date(SP500$Date,"%m/%d/%y")
-
-
-ymd(NIKKEI$Data)
