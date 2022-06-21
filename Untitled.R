@@ -111,3 +111,10 @@ best_tsSX5Euro
 acf(best_tsSX5Euro$residuals)
 pacf(best_tsSX5Euro$residuals)
 
+#coefficients ARIMA model for components AR and MA
+coef(best_tsSX5Euro)
+
+#prediction based on the ARIMA model forecasting for 100 days with the standard error
+predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
+theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
+plot(theForecast) 
