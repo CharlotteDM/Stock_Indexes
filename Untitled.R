@@ -106,34 +106,33 @@ all_indexes <- left_join(VIX, DJ, by='Date') %>%
   left_join(., SX5Euro, by='Date')
 
 #2attempt
-max_length <- max(c(length(VIX$Close), length(VIX$Date),length(DJ$Close), length(FTSE$Close),
+max_length <- max(c(length(VIX$Close),length(VIX$Date),length(DJ$Close), length(FTSE$Close),
                     length(FTSE100$Close), length(NASDAQ$Close), length(NIKKEI$Close),
                     length(SP500$Close), length(SX5Euro$Close)))    # finding out maximum length because we have unequal lenghts 
 
-
-
-najkrótszy wektor <- z najkrótszym
+length(NIKKEI$Close) <- length(FTSE$Close)
 
 
 
 all_indexes <- data.frame(VIX$Close = VIX$Close, VIX$Date = VIX$Date, 
-                          DJ$Close,
-                          FTSE$Close,
-                          FTSE100$Close,
-                          NASDAQ$Close,
-                          NIKKEI$Close, 
-                          SP500$Close,
-                          SX5Euro$Clos
+                          DJ$Close = DJ$Close,
+                          FTSE$Close = FTSE$Close,
+                          FTSE100$Close = FTSE100$Close,
+                          NASDAQ$Close = NASDAQ$Close,
+                          NIKKEI$Close = NIKKEI$Close, 
+                          SP500$Close = SP500$Close,
+                          SX5Euro$Close = SX5Euro$Close)
 
-allindexes <- cbind.data.frame(VIX$Close, VIX$Date, 
-                         DJ$Close,
-                         FTSE$Close,
-                         FTSE100$Close,
-                         NASDAQ$Close,
-                         NIKKEI$Close, 
-                         SP500$Close,
-                         SX5Euro$Close)
-?data.frame
+
+
+allindexes <- data.frame(VIX = c(1, 5, NA), DJ = c(5, NA),
+                         FTSE = c(5, NA),
+                         FTSE100 = c (5, NA),
+                         NASDAQ = c(5, NA),
+                         NIKKEI = c(5, NA), 
+                         SP500 = c(5, NA),
+                         SX5Euro = c(5, NA))
+
 
 
 plot_all <- 
