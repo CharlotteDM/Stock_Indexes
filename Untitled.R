@@ -94,7 +94,50 @@ date_convert = function(date_input) {
 #?????chart_Series(SX5Euro$Close, name = "EURO STOXX 50 Index 02.2020-06.2022")
 
 ### ------- plot for all od indexes
-#new data frame
+## ----new data frame
+# ---changes name of columns in df's
+colnames(VIX)[1] <- "VIX_Date"
+colnames(VIX)[2] <- "VIX_Open"
+colnames(VIX)[3] <- "VIX_High"
+colnames(VIX)[4] <- "VIX_Low"
+colnames(VIX)[5] <- "VIX_Close"
+colnames(DJ)[1] <- "DJ_Date"
+colnames(DJ)[2] <- "DJ_Open"
+colnames(DJ)[3] <- "DJ_High"
+colnames(DJ)[4] <- "DJ_Low"
+colnames(DJ)[5] <- "DJ_Close"
+colnames(FTSE)[1] <- "FTSE_Date"
+colnames(FTSE)[2] <- "FTSE_Open"
+colnames(FTSE)[3] <- "FTSE_High"
+colnames(FTSE)[4] <- "FTSE_Low"
+colnames(FTSE)[5] <- "FTSE_Close"
+colnames(FTSE100)[1] <- "FTSE100_Date"
+colnames(FTSE100)[2] <- "FTSE100_Open"
+colnames(FTSE100)[3] <- "FTSE100_High"
+colnames(FTSE100)[4] <- "FTSE100_Low"
+colnames(FTSE100)[5] <- "FTSE100_Close"
+colnames(NASDAQ)[1] <- "NASDAQ_Date"
+colnames(NASDAQ)[2] <- "NASDAQ_Open"
+colnames(NASDAQ)[3] <- "NASDAQ_High"
+colnames(NASDAQ)[4] <- "NASDAQ_Low"
+colnames(NASDAQ)[5] <- "NASDAQ_Close"
+colnames(NIKKEI)[1] <- "NIKKEI_Date"
+colnames(NIKKEI)[2] <- "NIKKEI_Open"
+colnames(NIKKEI)[3] <- "NIKKEI_High"
+colnames(NIKKEI)[4] <- "NIKKEI_Low"
+colnames(NIKKEI)[5] <- "NIKKEI_Close"
+colnames(SP500)[1] <- "SP500_Date"
+colnames(SP500)[2] <- "SP500_Open"
+colnames(SP500)[3] <- "SP500_High"
+colnames(SP500)[4] <- "SP500_Low"
+colnames(SP500)[5] <- "SP500_Close"
+colnames(SX5Euro)[1] <- "SX5Euro_Date"
+colnames(SX5Euro)[2] <- "SX5Euro_Open"
+colnames(SX5Euro)[3] <- "SX5Euro_High"
+colnames(SX5Euro)[4] <- "SX55uro_Low"
+colnames(SX5Euro)[5] <- "SX5Euro_Close"
+
+
 
 #1 attempt
 all_indexes <- left_join(VIX, DJ, by='Date') %>%
@@ -139,7 +182,7 @@ all_indexes <- smartbind(VIX_Close,
                               SX5Euro_Close, fill = NA)
 ?smartbind
 
-
+rm(allindexes)
 
 
 all_indx <- data.frame(matrix(unlist(all_indexes), nrow=length(all_indexes), byrow=TRUE))
