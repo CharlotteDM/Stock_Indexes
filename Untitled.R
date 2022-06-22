@@ -91,7 +91,7 @@ date_convert = function(date_input) {
 
 
 
-#?????chart_Series(SX5Euro$Close, name = "EURO STOXX 50 Index 02.2020-06.2022")
+
 
 ### ------- plot for all od indexes
 ## ----new data frame
@@ -137,22 +137,44 @@ colnames(SX5Euro)[3] <- "SX5Euro_High"
 colnames(SX5Euro)[4] <- "SX55uro_Low"
 colnames(SX5Euro)[5] <- "SX5Euro_Close"
 
-# ---joining df's
+# ---joins df's
 df_list <- list(DJ, FTSE, FTSE100, NASDAQ, NIKKEI, SP500, SX5Euro, VIX)
 all_indexes <- df_list %>% reduce(full_join, by="Date")
 
 ## ----plot for all indexes
-
+# ---defines colors
+colors_indexes <- c("VIX_Close" = "blue", "DJ_Close" = "violet", "FTSE_Close" = "pink", "FTSE100_Close" = "coral",
+            "NASDAQ_Close" = "greenyellow", "NIKKEI_Close" = "firebrick1", "SP500_Close" = "darkorange",
+            "SX5Euro_Close" = "deepskyblue")
+# ---makes plot
 plot_all <- 
-  ggplot(all_indexes, aes(x=Date))+
-  geom_line(aes(y=VIX_Close),color="blue")+
-  geom_line(aes(y=DJ_Close),color="violet")+
-  geom_line(aes(y=FTSE_Close),color="pink")+
-  geom_line(aes(y=FTSE100_Close),color="coral") +
-  geom_line(aes(y=NASDAQ_Close),color="greenyellow")+
-  geom_line(aes(y=NIKKEI_Close),color="firebrick1")+
-  geom_line(aes(y=SP500_Close),color="darkorange")+
-  geom_line(aes(y=SX5Euro_Close),color="green")
+  ggplot(all_indexes, aes(x = Date)) +
+  geom_line(aes(y = VIX_Close, color = "VIX_Close")) +
+  geom_line(aes(y = DJ_Close, color = "DJ_Close")) +
+  geom_line(aes(y = FTSE_Close,color = "FTSE_Close")) +
+  geom_line(aes(y = FTSE100_Close, color = "FTSE100_Close")) +
+  geom_line(aes(y = NASDAQ_Close, color = "NASDAQ_Close")) +
+  geom_line(aes(y = NIKKEI_Close, color = "NIKKEI_Close")) +
+  geom_line(aes(y = SP500_Close, color = "SP500_Close")) +
+  geom_line(aes(y = SX5Euro_Close, color = "SX5Euro_Close")) +
+  labs(
+    title = "Stock Indexes",
+    subtitle = "02.2020-06.2022",
+    caption = "(based on data from: https://www.wsj.com/market-data/)",
+    x = "Date",
+    y = "Stock Indexes",
+    color = "Legend") +
+  scale_color_manual(values = colors_indexes) +
+  theme(
+    plot.title = element_text(color="royalblue4", size=14, face="bold"),
+    axis.title.x = element_text(color="steelblue2", size=14, face="bold"),
+    axis.title.y = element_text(color="steelblue2", size=14, face="bold")) 
+
+
+## ----interactive chart for all indexes
+all_ind_plotly <- ggplotly(plot_all)
+
+
 
 #time series for SX5Euro
 tsSX5Euro <- ts(SX5Euro$Close, start=c(2022, 1), freq=12)
