@@ -15,7 +15,8 @@ library(moments)
 library(quantmod) ?
 library(tseries)
 library(timetk)
-#install.packages("timetk")
+#install.packages("rlang")
+library(rlang)
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(path)
@@ -175,11 +176,13 @@ plot_all <-
 all_ind_plotly <- ggplotly(plot_all)
 
 
-
+### ------- time series for one of the stock index
 #time series for SX5Euro
-tsSX5Euro <- ts(SX5Euro$Close, start=c(2022, 1), freq=12)
-plotTSX5Euro <- plot_time_series(tsSX5Euro, 'EURO STOXX 50 Index')
+tsSX5Euro <- ts(SX5Euro$SX5Euro_Close, start=c(2022, 1), freq=12)
+class(SX5Euro$SX5Euro_Close)
 
+plotSX5Euro <- plot_time_series(SX5Euro, SX5Euro$Date, SX5Euro_Close, 'EURO STOXX 50 Index')
+?plot_time_series
 
 #autocovariance function
 acf(tsSX5Euro)
