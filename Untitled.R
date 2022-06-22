@@ -181,7 +181,9 @@ all_ind_plotly <- ggplotly(plot_all)
 tsSX5Euro <- ts(SX5Euro$SX5Euro_Close, start=c(2022, 1), freq=12)
 class(SX5Euro$SX5Euro_Close)
 
-plotSX5Euro <- plot_time_series(SX5Euro, SX5Euro$Date, SX5Euro_Close, 'EURO STOXX 50 Index')
+plotSX5Euro <- plot_time_series(SX5Euro, SX5Euro$Date, SX5Euro_Close, 
+                                .title = "Time Series Plot for SX5Euro",
+                                .x_lab = "Date", .y_lab = "Value")
 ?plot_time_series
 
 #autocovariance function
