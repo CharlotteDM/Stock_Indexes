@@ -96,123 +96,63 @@ date_convert = function(date_input) {
 ### ------- plot for all od indexes
 ## ----new data frame
 # ---changes name of columns in df's
-colnames(VIX)[1] <- "VIX_Date"
+colnames(VIX)[1] <- "Date"
 colnames(VIX)[2] <- "VIX_Open"
 colnames(VIX)[3] <- "VIX_High"
 colnames(VIX)[4] <- "VIX_Low"
 colnames(VIX)[5] <- "VIX_Close"
-colnames(DJ)[1] <- "DJ_Date"
+colnames(DJ)[1] <- "Date"
 colnames(DJ)[2] <- "DJ_Open"
 colnames(DJ)[3] <- "DJ_High"
 colnames(DJ)[4] <- "DJ_Low"
 colnames(DJ)[5] <- "DJ_Close"
-colnames(FTSE)[1] <- "FTSE_Date"
+colnames(FTSE)[1] <- "Date"
 colnames(FTSE)[2] <- "FTSE_Open"
 colnames(FTSE)[3] <- "FTSE_High"
 colnames(FTSE)[4] <- "FTSE_Low"
 colnames(FTSE)[5] <- "FTSE_Close"
-colnames(FTSE100)[1] <- "FTSE100_Date"
+colnames(FTSE100)[1] <- "Date"
 colnames(FTSE100)[2] <- "FTSE100_Open"
 colnames(FTSE100)[3] <- "FTSE100_High"
 colnames(FTSE100)[4] <- "FTSE100_Low"
 colnames(FTSE100)[5] <- "FTSE100_Close"
-colnames(NASDAQ)[1] <- "NASDAQ_Date"
+colnames(NASDAQ)[1] <- "Date"
 colnames(NASDAQ)[2] <- "NASDAQ_Open"
 colnames(NASDAQ)[3] <- "NASDAQ_High"
 colnames(NASDAQ)[4] <- "NASDAQ_Low"
 colnames(NASDAQ)[5] <- "NASDAQ_Close"
-colnames(NIKKEI)[1] <- "NIKKEI_Date"
+colnames(NIKKEI)[1] <- "Date"
 colnames(NIKKEI)[2] <- "NIKKEI_Open"
 colnames(NIKKEI)[3] <- "NIKKEI_High"
 colnames(NIKKEI)[4] <- "NIKKEI_Low"
 colnames(NIKKEI)[5] <- "NIKKEI_Close"
-colnames(SP500)[1] <- "SP500_Date"
+colnames(SP500)[1] <- "Date"
 colnames(SP500)[2] <- "SP500_Open"
 colnames(SP500)[3] <- "SP500_High"
 colnames(SP500)[4] <- "SP500_Low"
 colnames(SP500)[5] <- "SP500_Close"
-colnames(SX5Euro)[1] <- "SX5Euro_Date"
+colnames(SX5Euro)[1] <- "Date"
 colnames(SX5Euro)[2] <- "SX5Euro_Open"
 colnames(SX5Euro)[3] <- "SX5Euro_High"
 colnames(SX5Euro)[4] <- "SX55uro_Low"
 colnames(SX5Euro)[5] <- "SX5Euro_Close"
 
+# ---joining df's
+df_list <- list(DJ, FTSE, FTSE100, NASDAQ, NIKKEI, SP500, SX5Euro, VIX)
+all_indexes <- df_list %>% reduce(full_join, by="Date")
 
-
-#1 attempt
-all_indexes <- left_join(VIX, DJ, by='Date') %>%
-  left_join(., FTSE, by='Date') %>%
-  left_join(., FTSE100, by='Date') %>%
-  left_join(., NASDAQ, by='Date') %>%
-  left_join(., NIKKEI, by='Date') %>%
-  left_join(., SP500, by='Date') %>%
-  left_join(., SX5Euro, by='Date')
-
-#2attempt
-max_length <- max(c(length(VIX$Close),length(VIX$Date),length(DJ$Close), length(FTSE$Close),
-                    length(FTSE100$Close), length(NASDAQ$Close), length(NIKKEI$Close),
-                    length(SP500$Close), length(SX5Euro$Close)))    # finding out maximum length because we have unequal lenghts 
-
-length(NIKKEI$Close) <- length(FTSE$Close)
-
-
-
-
-
-#changing columns from df's into separate df
-VIX_Close <- as.data.frame(VIX$Close)
-VIX_Date <- as.data.frame(VIX$Date)
-DJ_Close <- as.data.frame(DJ$Close)
-FTSE_Close <- as.data.frame(FTSE$Close)
-FTSE100_Close <- as.data.frame(FTSE100$Close)
-NASDAQ_Close <- as.data.frame(NASDAQ$Close)
-NIKKEI_Close <- as.data.frame(NIKKEI$Close)
-SP500_Close <- as.data.frame(SP500$Close)
-SX5Euro_Close <- as.data.frame(SX5Euro$Close)
-
-
-all_indexes <- smartbind(VIX_Close, 
-                              VIX_Date, 
-                              DJ_Close,
-                              FTSE_Close,
-                              FTSE100_Close,
-                              NASDAQ_Close,
-                              NIKKEI_Close, 
-                              SP500_Close,
-                              SX5Euro_Close, fill = NA)
-?smartbind
-
-rm(allindexes)
-
-
-all_indx <- data.frame(matrix(unlist(all_indexes), nrow=length(all_indexes), byrow=TRUE))
-
-
-allindexes <- data.frame(VIX = c(1, 5, NA), DJ = c(5, NA),
-                         FTSE = c(5, NA),
-                         FTSE100 = c (5, NA),
-                         NASDAQ = c(5, NA),
-                         NIKKEI = c(5, NA), 
-                         SP500 = c(5, NA),
-                         SX5Euro = c(5, NA), all = T)
-
-
-#3attempt
-all_indexes <- data.frame(stock = "VIX", Date = as.Date(row.names(as.data.frame(VIX))), value = VIX$Close)
-DFJPM <- data.frame(stock = "JPM", Date = as.Date(row.names(as.data.frame(JPM))), value = JPM$JPM.Close)
-plotting <- rbind(DFSQ, DFJPM)
-
+## ----plot for all indexes
 
 plot_all <- 
-  ggplot(allindexes, aes(x=Date))+
-  geom_line(aes(y=VIX),color="blue")+
-  geom_line(aes(y=DJ),color="violet")+
-  geom_line(aes(y=FTSE),color="pink")+
-  geom_line(aes(y=FTSE100),color="coral") +
-  geom_line(aes(y=NASDAQ),color="greenyellow")+
-  geom_line(aes(y=NIKKEI),color="firebrick1")+
-  geom_line(aes(y=SP500),color="darkorange")+
-  geom_line(aes(y=SX5Euro),color="green")
+  ggplot(all_indexes, aes(x=Date))+
+  geom_line(aes(y=VIX_Close),color="blue")+
+  geom_line(aes(y=DJ_Close),color="violet")+
+  geom_line(aes(y=FTSE_Close),color="pink")+
+  geom_line(aes(y=FTSE100_Close),color="coral") +
+  geom_line(aes(y=NASDAQ_Close),color="greenyellow")+
+  geom_line(aes(y=NIKKEI_Close),color="firebrick1")+
+  geom_line(aes(y=SP500_Close),color="darkorange")+
+  geom_line(aes(y=SX5Euro_Close),color="green")
 
 #time series for SX5Euro
 tsSX5Euro <- ts(SX5Euro$Close, start=c(2022, 1), freq=12)
