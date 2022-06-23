@@ -88,11 +88,6 @@ date_convert = function(date_input) {
 }
 
 
-#analysis
-
-
-
-
 
 ### ------- plot for all od indexes
 ## ----new data frame
@@ -175,6 +170,27 @@ plot_all <-
 ## ----interactive chart for all indexes
 all_ind_plotly <- ggplotly(plot_all)
 
+### -------- descriptive statistics - function
+
+descr_stat = function(all_indexes) {
+  
+  #get indexes to use in desc statistics
+  names_list = colnames(all_indexes)
+ 
+  
+  for (col_name in names_list) {
+    summary_val <- summary(all_indexes[[col_name]])
+    var_val <- var(all_indexes[[col_name]], na.rm = T)
+    sd_val<- sd(all_indexes[[col_name]], na.rm = T)
+    skew_val <- skewness(all_indexes[[col_name]], na.rm = T)
+    kurt_val <- kurtosis(all_indexes[[col_name]], na.rm = T)
+    cat("\n","Summary: ", col_name,"\n")
+    print(summary_val)
+    cat("\n","var: ", var_val,"\n","sd: ", sd_val,"\n","skewness: ", skew_val,"\n","kurtosis: ", kurt_val,"\n")
+  }
+}
+
+descr_stat(all_indexes)
 
 ### ------- time series for one of the stock index
 #time series for SX5Euro
