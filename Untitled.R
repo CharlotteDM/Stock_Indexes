@@ -235,8 +235,6 @@ dcmp <- decompose(as.ts(tsSX5Euro))
 plot(dcmp)
 
 
-
-
 ### ------- makes quarterly data
 all <- arrange(all_indexes, Date)
 all$qdate <- as.yearqtr(all$Date)
@@ -253,18 +251,23 @@ all_close <- all_qtrly %>%
 ## ----interactive plot for SX5 Euro
 
 sx5e <- all_indexes %>%
-  hchart(type = "line", 
-    hcaes(x = Date, y = SX5Euro_Close) )
+  hchart(type = "line", color = "red", 
+    hcaes(x = Date, y = SX5Euro_Close)) %>%
+  hc_credits(enabled = TRUE, 
+             text = "Sources: https://www.wsj.com/market-data",
+             style = list(fontSize = "10px")) %>%
+  hc_title (text = "The EURO STOXX 50 Index") %>%
+  hc_tooltip(valueDecimals = 4,
+             pointFormat = "Value of EURO STOXX 50 Index: {point.y}") 
 
-sx5e <- hc_title (sx5e, text = "SX5 Euro Close Index")
 
-
+#2attempt
 highchart(type="stock") %>% 
   hc_add_series(all_indexes$SX5Euro_Close, type = "line",
                 color = "red") %>% 
   hc_title(text="<b>SX5 Euro</b>") #work but we have problems with date
 
-?hc_add_series
+
 
 
 
