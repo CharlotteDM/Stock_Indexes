@@ -230,6 +230,12 @@ predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
 theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
 plot(theForecast) 
 
+
+#decomposition of additive time series for SX5Euro
+dcmp <- decompose(as.ts(tsSX5Euro))
+dcmpSX5Euro <- plot(dcmp)
+
+
 ### ------- makes quarterly data
 all <- arrange(all_indexes, Date)
 all$qdate <- as.yearqtr(all$Date)
@@ -240,8 +246,12 @@ all_qtrly <- all %>%
 
 ### ------- takes only closing value
 all_close <- all_qtrly %>%
-  select("Date", "qdate" )
+  select("qdate", "DJ_Close", "FTSE_Close", "FTSE100_Close", "NASDAQ_Close", "NIKKEI_Close", 
+         "SP500_Close", "SX5Euro_Close", "VIX_Close")
 
+
+
+?decompose
 
 
 
