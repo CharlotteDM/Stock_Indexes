@@ -230,10 +230,11 @@ predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
 theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
 plot(theForecast) 
 
-
 #decomposition of additive time series for SX5Euro
 dcmp <- decompose(as.ts(tsSX5Euro))
-dcmpSX5Euro <- plot(dcmp)
+plot(dcmp)
+
+
 
 
 ### ------- makes quarterly data
@@ -249,9 +250,18 @@ all_close <- all_qtrly %>%
   select("qdate", "DJ_Close", "FTSE_Close", "FTSE100_Close", "NASDAQ_Close", "NIKKEI_Close", 
          "SP500_Close", "SX5Euro_Close", "VIX_Close")
 
+#interactive plot
 
+x <- getFX(all_close$SX5Euro_Close,
+           auto.assign = T)
+df <- as.data.frame(x)
 
-?decompose
+highchart(type="stock") %>% 
+  hc_add_series(x, type = "line",
+                color = "red") %>% 
+  hc_title(text="<b>SX5 Euro</b>")
+
+?hc_add_series
 
 
 
