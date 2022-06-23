@@ -17,6 +17,8 @@ library(tseries)
 library(timetk)
 #install.packages("rlang")
 library(rlang)
+#install.packages("highcharter")
+library(highcharter)
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(path)
@@ -227,3 +229,12 @@ coef(best_tsSX5Euro)
 predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
 theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
 plot(theForecast) 
+
+### ------- makes quarterly data
+all <- arrange(all_indexes, Date)
+all$qdate <- as.yearqtr(all$Date)
+all_qtrly <- all %>%
+  group_by(qdate) %>%
+  summarise_all(mean, na.rm = T)
+
+chartSeries(all_indexes$NIIKKEI_Close)
