@@ -237,4 +237,12 @@ all_qtrly <- all %>%
   group_by(qdate) %>%
   summarise_all(mean, na.rm = T)
 
-chartSeries(all_indexes$NIIKKEI_Close)
+
+### ------- takes only closing value
+all_close <- all_qtrly %>%
+  select("Date", "qdate" )
+
+
+
+
+
