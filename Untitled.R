@@ -250,16 +250,19 @@ all_close <- all_qtrly %>%
   select("qdate", "DJ_Close", "FTSE_Close", "FTSE100_Close", "NASDAQ_Close", "NIKKEI_Close", 
          "SP500_Close", "SX5Euro_Close", "VIX_Close")
 
-#interactive plot
+## ----interactive plot for SX5 Euro
 
-x <- getFX(all_close$SX5Euro_Close,
-           auto.assign = T)
-df <- as.data.frame(x)
+sx5e <- all_indexes %>%
+  hchart(type = "line", 
+    hcaes(x = Date, y = SX5Euro_Close) )
+
+sx5e <- hc_title (sx5e, text = "SX5 Euro Close Index")
+
 
 highchart(type="stock") %>% 
-  hc_add_series(x, type = "line",
+  hc_add_series(all_indexes$SX5Euro_Close, type = "line",
                 color = "red") %>% 
-  hc_title(text="<b>SX5 Euro</b>")
+  hc_title(text="<b>SX5 Euro</b>") #work but we have problems with date
 
 ?hc_add_series
 
