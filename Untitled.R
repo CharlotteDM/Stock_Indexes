@@ -12,7 +12,7 @@ library(forecast)
 library(olsrr)
 library(zoo)
 library(moments)
-library(quantmod) ?
+library(quantmod) 
 library(tseries)
 library(timetk)
 #install.packages("rlang")
@@ -24,16 +24,6 @@ library(ggfortify)
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(path)
-
-
-url <- "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX9D_History.csv"
-
-#access to API - VIX
-#response_VIX <- GET(url)
-#base_uri_VIX <- "https://cdn.cboe.com"
-#endpoint_VIX <- "/api/global/us_indices/daily_prices/VIX9D_History.csv"
-#resource_uri_VIX <- paste0(base_uri_VIX, endpoint_VIX)
-#response_data_VIX <- GET(resource_uri_VIX, query = query_params)
 
 
 #loading data: VIX
