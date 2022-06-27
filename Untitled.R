@@ -230,19 +230,22 @@ predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
 theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
 plot(theForecastSX5Euro) 
 
-#prediction based on the naive method
-frc_SX5Euro_nm <- c(NA, tsSX5Euro[-length(tsSX5Euro)])
-mean(abs((tsSX5Euro-frc_SX5Euro_nm)/tsSX5Euro), na.rm=T) * 100 #MAPE
-mean(abs(tsSX5Euro-frc_SX5Euro_nm), na.rm=T) #absolute mean error
+#prediction based on the naive method for SX5 Euro
+frc_SX5Euro_nm <- c(NA, SX5Euro$SX5Euro_Close[-length(SX5Euro$SX5Euro_Close)])
+mean(abs((SX5Euro$SX5Euro_Close-frc_SX5Euro_nm)/SX5Euro$SX5Euro_Close), na.rm=T) * 100 #MAPE
+mean(abs(SX5Euro$SX5Euro_Close-frc_SX5Euro_nm), na.rm=T) #absolute mean error
 
-#plot
-naive_plot <- plot(tsSX5Euro, type='l', col = 'red', main='Actual vs. Forecasted',
-     xlab='Date', ylab='SX5 Euro value') +
-lines(frc_SX5Euro_nm, type='l', col = 'blue') +
+#plot based on naive method for SX5 Euro
+naive_plot <- plot(SX5Euro$SX5Euro_Close, type='l', col = 'red', main='Actual vs. Forecasted',
+     xlab='Period of time', ylab='SX5 Euro value') +
+lines(frc_SX5Euro_nm, type='l', col = 'green') +
 legend('topright', legend=c('Actual', 'Forecasted'),
-       col=c('red', 'blue'), lty=1)
+       col=c('red', 'green'), lty=1)
 
-?lines
+class(frc_SX5Euro_nm)
+class(SX5Euro$SX5Euro_Close)
+head(frc_SX5Euro_nm)
+head((SX5Euro$SX5Euro_Close))
 
 #plot 
 autoplot(best_tsSX5Euro) +
