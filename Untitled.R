@@ -230,6 +230,10 @@ predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
 theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
 plot(theForecastSX5Euro) 
 
+#decomposition of additive time series for SX5Euro
+dcmp <- decompose(as.ts(tsSX5Euro))
+plot(dcmp)
+
 #prediction based on the naive method for SX5 Euro
 frc_SX5Euro_nm <- c(NA, SX5Euro$SX5Euro_Close[-length(SX5Euro$SX5Euro_Close)])
 mean(abs((SX5Euro$SX5Euro_Close-frc_SX5Euro_nm)/SX5Euro$SX5Euro_Close), na.rm=T) * 100 #MAPE
@@ -242,19 +246,12 @@ lines(frc_SX5Euro_nm, type='l', col = 'green') +
 legend('topright', legend=c('Actual', 'Forecasted'),
        col=c('red', 'green'), lty=1)
 
-class(frc_SX5Euro_nm)
-class(SX5Euro$SX5Euro_Close)
-head(frc_SX5Euro_nm)
-head((SX5Euro$SX5Euro_Close))
-
-#plot 
-autoplot(best_tsSX5Euro) +
-  autolayer(ts(tsSX5Euro, start=length(train)), series = "Test Data")
+frc2_SX5Euro_nm <- naive(SX5Euro$SX5Euro_Close, h=10)
+autoplot(fc_na) +
+  autolayer(ts(test, start=length(train)), series = "Test Data")
 
 
-#decomposition of additive time series for SX5Euro
-dcmp <- decompose(as.ts(tsSX5Euro))
-plot(dcmp)
+
 
 
 ### ------- makes quarterly data
