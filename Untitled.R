@@ -232,7 +232,14 @@ fit_tsSX5Euro <- Arima(tsSX5Euro, order = c(3,1,3),
              include.drift = TRUE)
 summary(fit_tsSX5Euro)
 
-#plot for residuals for model ARIMA (3,1,3)
+
+#plots for residuals for model ARIMA (3,1,3)
+ggtsdiag(fit_tsSX5Euro) +
+  theme(panel.background = element_rect(fill = "lavender"),
+        panel.grid.minor = element_blank(),
+        axis.line.y = element_line(colour="gray28"),
+        axis.line.x = element_line(colour="gray28"))
+
 residFit_SX5Euro <- ggplot(data=fit_tsSX5Euro, aes(residuals(fit_tsSX5Euro))) +
   geom_histogram(aes(y =..density..),  
                  binwidth = 6,
@@ -244,6 +251,7 @@ residFit_SX5Euro <- ggplot(data=fit_tsSX5Euro, aes(residuals(fit_tsSX5Euro))) +
         axis.line.x = element_line(colour="gray28")) +
   ggtitle("SX5 Euro Index - ARIMA Model Residuals")
 
+#### -------prediction
 #prediction based on the ARIMA model forecasting for 100 days with the standard error
 predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
 theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
@@ -275,9 +283,7 @@ autoplot(frc2_SX5Euro_nm) +
 
 
 
-
-
-### ------- makes quarterly data
+#### ------- makes quarterly data
 all <- arrange(all_indexes, Date)
 all$qdate <- as.yearqtr(all$Date)
 all_qtrly <- all %>%
@@ -285,7 +291,7 @@ all_qtrly <- all %>%
   summarise_all(mean, na.rm = T)
 
 
-### ------- takes only closing value
+#### ------- takes only closing value
 all_close <- all_qtrly %>%
   select("qdate", "DJ_Close", "FTSE_Close", "FTSE100_Close", "NASDAQ_Close", "NIKKEI_Close", 
          "SP500_Close", "SX5Euro_Close", "VIX_Close")
