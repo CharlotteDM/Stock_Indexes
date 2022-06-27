@@ -19,6 +19,8 @@ library(timetk)
 library(rlang)
 #install.packages("highcharter")
 library(highcharter)
+#install.packages("ggfortify")
+library(ggfortify)
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(path)
@@ -224,6 +226,27 @@ pacf(best_tsSX5Euro$residuals)
 
 #coefficients ARIMA model for components AR and MA
 coef(best_tsSX5Euro)
+
+#### -------- builds a model
+fit_tsSX5Euro <- Arima(tsSX5Euro, order = c(3,1,3),
+             include.drift = TRUE)
+summary(fit_tsSX5Euro)
+ggtsdiag_custom(fit_tsSX5Euro) +
+  theme(panel.background = element_rect(fill = "gray98"),
+        panel.grid.minor = element_blank(),
+        axis.line.y = element_line(colour="gray"),
+        axis.line.x = element_line(colour="gray"))
+
+residFit_SX5Euro <- ggplot(data=fit_tsSX5Euro, aes(residuals(fit_tsSX5Euro))) +
+  geom_histogram(aes(y =..density..),  
+                 binwidth = 6,
+                 col="midnightblue", fill="skyblue") +
+  geom_density(col=1) +
+  theme(panel.background = element_rect(fill = "lavender"),
+        panel.grid.minor = element_blank(),
+        axis.line   = element_line(colour="gray28"),
+        axis.line.x = element_line(colour="gray28")) +
+  ggtitle("SX5 Euro Index - ARIMA Model Residuals")
 
 #prediction based on the ARIMA model forecasting for 100 days with the standard error
 predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
