@@ -326,5 +326,7 @@ plot(model)
 ggplot(data = all_indexes, aes(x = SX5Euro_close, y = Date) + geom_point() +
          geom_smooth(method = "lm") + labs(x = "f", y = "d"))
 
+allmodels <- ols_step_all_possible(model)
+ols_step_both_aic(model) #stepwise summary
 
 
