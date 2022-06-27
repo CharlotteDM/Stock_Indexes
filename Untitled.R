@@ -251,6 +251,8 @@ residFit_SX5Euro <- ggplot(data=fit_tsSX5Euro, aes(residuals(fit_tsSX5Euro))) +
         axis.line.x = element_line(colour="gray28")) +
   ggtitle("SX5 Euro Index - ARIMA Model Residuals")
 
+
+
 #### -------prediction
 #prediction based on the ARIMA model forecasting for 100 days with the standard error
 predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
@@ -316,7 +318,13 @@ highchart(type="stock") %>%
   hc_title(text="<b>SX5 Euro</b>") #work but we have problems with date
 
 
-
+#### ------multiple regression model for EURO STOXX 50 Index 
+model <- lm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close + 
+              NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes)
+summary(model)
+plot(model)
+ggplot(data = all_indexes, aes(x = SX5Euro_close, y = Date) + geom_point() +
+         geom_smooth(method = "lm") + labs(x = "f", y = "d"))
 
 
 
