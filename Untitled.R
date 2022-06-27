@@ -211,9 +211,9 @@ acf(tsSX5Euro)
 pacf(tsSX5Euro)
 
 #determining the optimal number of differentiations 
-plot(diff(tsSX5Euro))
-diff(tsSX5Euro)
 ndiffs(tsSX5Euro,test="kpss",alpha=0.05)
+diff(tsSX5Euro, differences = 1)
+plot(diff(tsSX5Euro, 1))
 
 #using the auto.arima function
 best_tsSX5Euro <- auto.arima(x = tsSX5Euro)
