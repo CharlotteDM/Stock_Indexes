@@ -231,12 +231,8 @@ coef(best_tsSX5Euro)
 fit_tsSX5Euro <- Arima(tsSX5Euro, order = c(3,1,3),
              include.drift = TRUE)
 summary(fit_tsSX5Euro)
-ggtsdiag_custom(fit_tsSX5Euro) +
-  theme(panel.background = element_rect(fill = "gray98"),
-        panel.grid.minor = element_blank(),
-        axis.line.y = element_line(colour="gray"),
-        axis.line.x = element_line(colour="gray"))
 
+#plot for residuals for model ARIMA (3,1,3)
 residFit_SX5Euro <- ggplot(data=fit_tsSX5Euro, aes(residuals(fit_tsSX5Euro))) +
   geom_histogram(aes(y =..density..),  
                  binwidth = 6,
