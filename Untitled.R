@@ -228,7 +228,26 @@ coef(best_tsSX5Euro)
 #prediction based on the ARIMA model forecasting for 100 days with the standard error
 predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
 theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
-plot(theForecast) 
+plot(theForecastSX5Euro) 
+
+#prediction based on the naive method
+frc_SX5Euro_nm <- c(NA, tsSX5Euro[-length(tsSX5Euro)])
+mean(abs((tsSX5Euro-frc_SX5Euro_nm)/tsSX5Euro), na.rm=T) * 100 #MAPE
+mean(abs(tsSX5Euro-frc_SX5Euro_nm), na.rm=T) #absolute mean error
+
+#plot
+naive_plot <- plot(tsSX5Euro, type='l', col = 'red', main='Actual vs. Forecasted',
+     xlab='Date', ylab='SX5 Euro value') +
+lines(frc_SX5Euro_nm, type='l', col = 'blue') +
+legend('topright', legend=c('Actual', 'Forecasted'),
+       col=c('red', 'blue'), lty=1)
+
+?lines
+
+#plot 
+autoplot(best_tsSX5Euro) +
+  autolayer(ts(tsSX5Euro, start=length(train)), series = "Test Data")
+
 
 #decomposition of additive time series for SX5Euro
 dcmp <- decompose(as.ts(tsSX5Euro))
