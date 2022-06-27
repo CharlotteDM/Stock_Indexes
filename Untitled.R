@@ -330,3 +330,7 @@ allmodels <- ols_step_all_possible(model)
 ols_step_both_aic(model) #stepwise summary
 
 
+ols_test_normality(model) #test K-S: p > 0,05 that is, there is no reason to reject the null hypothesis and the distribution is normal
+ols_plot_resid_hist(model) #histogram
+ols_plot_resid_qq(model) #a quantile-quantile plot shows the residual distribution and outliers
+cook <- ols_plot_cooksd_bar(model) #establishing outliers 
