@@ -246,8 +246,12 @@ lines(frc_SX5Euro_nm, type='l', col = 'green') +
 legend('topright', legend=c('Actual', 'Forecasted'),
        col=c('red', 'green'), lty=1)
 
-frc2_SX5Euro_nm <- naive(SX5Euro$SX5Euro_Close, h=10)
-autoplot(fc_na) +
+#forecast from naive method 
+n <- 100 #number of period for forecasting
+train <- head((SX5Euro$SX5Euro_Close), length(SX5Euro$SX5Euro_Close)-n) #splits data
+test <- tail((SX5Euro$SX5Euro_Close), n) #splits data
+frc2_SX5Euro_nm <- naive(train, h=10)
+autoplot(frc2_SX5Euro_nm) +
   autolayer(ts(test, start=length(train)), series = "Test Data")
 
 
