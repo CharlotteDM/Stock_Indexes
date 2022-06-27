@@ -259,11 +259,9 @@ mean(abs((SX5Euro$SX5Euro_Close-frc_SX5Euro_nm)/SX5Euro$SX5Euro_Close), na.rm=T)
 mean(abs(SX5Euro$SX5Euro_Close-frc_SX5Euro_nm), na.rm=T) #absolute mean error
 
 #plot based on naive method for SX5 Euro
-naive_plot <- plot(SX5Euro$SX5Euro_Close, type='l', col = 'red', main='Actual vs. Forecasted',
-     xlab='Period of time', ylab='SX5 Euro value') +
-lines(frc_SX5Euro_nm, type='l', col = 'green') +
-legend('topright', legend=c('Actual', 'Forecasted'),
-       col=c('red', 'green'), lty=1)
+#naive_plot <- plot(SX5Euro$SX5Euro_Close, type='l', col = 'red', main='Actual vs. Forecasted',
+    # xlab='Period of time', ylab='SX5 Euro value') + lines(frc_SX5Euro_nm, type='l', col = 'green') + legend('topright', legend=c('Actual', 'Forecasted'),
+    #   col=c('red', 'green'), lty=1)
 
 #forecast from naive method 
 n <- 100 #number of period for forecasting
@@ -313,8 +311,8 @@ model <- lm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close
               NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes)
 summary(model)
 plot(model)
-ggplot(data = all_indexes, aes(x = SX5Euro_close, y = Date) + geom_point() +
-         geom_smooth(method = "lm") + labs(x = "f", y = "d"))
+#ggplot(data = all_indexes, aes(x = SX5Euro_close, y = Date) + geom_point() +
+        # geom_smooth(method = "lm") + labs(x = "f", y = "d"))
 
 allmodels <- ols_step_all_possible(model)
 ols_step_both_aic(model) #stepwise summary
@@ -324,3 +322,6 @@ ols_test_normality(model) #test K-S: p > 0,05 that is, there is no reason to rej
 ols_plot_resid_hist(model) #histogram
 ols_plot_resid_qq(model) #a quantile-quantile plot shows the residual distribution and outliers
 cook <- ols_plot_cooksd_bar(model) #establishing outliers 
+
+
+#### ----linear regression model for EURO STOXX 50 Index 
