@@ -51,8 +51,8 @@ source of data: https://www.wsj.com/market-data/quotes/index/DJIA/historical-pri
 
 This plot presents all indexes:
 
-```{r plot_all=plot, dev='png', out.width="150%", echo=FALSE, warning = FALSE}
-plot(plot_all)
+```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
+all_ind_plotly
 ```
 
 
