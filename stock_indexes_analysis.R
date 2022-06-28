@@ -21,8 +21,9 @@ library(rlang)
 library(highcharter)
 #install.packages("ggfortify")
 library(ggfortify)
-install.packages("coefplot")
+#install.packages("coefplot")
 library(coefplot)
+library(boot)
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(path)
@@ -352,6 +353,33 @@ anova(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona) #f
 
 #Bayesian Information Criterion
 BIC(model1, model2, model3, model4, model5, model6) #the best is first model
-AIC(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona)
+#Akaike Information Criterion
+AIC(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona) #the best is first model
 
+#Cross Validation with generalized linear models
+modelG1nona<- glm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close + 
+                   NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes_nona)
+modelG2nona <-  glm(SX5Euro_Close ~ DJ_Close +  FTSE100_Close + NASDAQ_Close + 
+                    SP500_Close + VIX_Close, data = all_indexes_nona)
+modelG3nona <-  glm(SX5Euro_Close ~ VIX_Close + NASDAQ_Close + SP500_Close, data = all_indexes_nona)
+modelG4nona <-  glm(SX5Euro_Close ~ VIX_Close + FTSE100_Close, data = all_indexes_nona)
+modelG5nona <- glm(SX5Euro_Close ~ NIKKEI_Close + FTSE_Close, data = all_indexes_nona)
+modelG6nona <- glm(SX5Euro_Close ~ DJ_Close, data = all_indexes_nona)
+
+identical(coef(model1nona), coef(modelG1nona))
+
+modelCV1 <- cv.glm(all_indexes_nona, modelG1nona, K = 5)
+modelCV2 <- cv.glm(all_indexes_nona, modelG2nona, K = 5)
+modelCV3 <- cv.glm(all_indexes_nona, modelG3nona, K = 5)
+modelCV4 <- cv.glm(all_indexes_nona, modelG4nona, K = 5)
+modelCV5 <- cv.glm(all_indexes_nona, modelG5nona, K = 5)
+modelCV6 <- cv.glm(all_indexes_nona, modelG6nona, K = 5)
+
+
+models_results <- as.data.frame(rbind(modelCV1$delta, modelCV2$delta, modelCV3$delta,
+                                      modelCV4$delta, modelCV5$delta, modelCV6$delta))
+names(models_results) <- c("Error", "Adjusted Error")
+models_results$model_name <- sprintf("modelG%s", 1:6)
+
+#first model is the best
 #### ----linear regression model for EURO STOXX 50 Index 
