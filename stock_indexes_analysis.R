@@ -21,6 +21,8 @@ library(rlang)
 library(highcharter)
 #install.packages("ggfortify")
 library(ggfortify)
+install.packages("coefplot")
+library(coefplot)
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(path)
@@ -307,13 +309,13 @@ highchart(type="stock") %>%
 
 
 #### ------multiple regression model for EURO STOXX 50 Index 
-model <- lm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close + 
+model1 <- lm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close + 
               NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes)
-summary(model)
-plot(model)
+summary(model1)
+plot(model1)
 
 
-allmodels <- ols_step_all_possible(model)
+allmodels <- ols_step_all_possible(model1) #residuals vs fitted
 ols_step_both_aic(model) #stepwise summary
 
 
@@ -322,5 +324,18 @@ ols_plot_resid_hist(model) #histogram
 ols_plot_resid_qq(model) #a quantile-quantile plot shows the residual distribution and outliers
 cook <- ols_plot_cooksd_bar(model) #establishing outliers 
 
+
+#### ----- comparison of models
+#with function multiplot
+model2 <-  lm(SX5Euro_Close ~ DJ_Close +  FTSE100_Close + NASDAQ_Close + 
+            SP500_Close + VIX_Close, data = all_indexes)
+model3 <-  lm(SX5Euro_Close ~ VIX_Close + NASDAQ_Close + SP500_Close, data = all_indexes)
+model4 <-  lm(SX5Euro_Close ~ VIX_Close + FTSE100_Close, data = all_indexes)
+model5 <- lm(SX5Euro_Close ~ NIKKEI_Close + FTSE_Close, data = all_indexes)
+model6 <- lm(SX5Euro_Close ~ DJ_Close, data = all_indexes)
+
+
+multiplot <- multiplot(model1, model2, model3, model4, model5, model6, 
+                       pointSize = 2) #the graph of the coefficients for the various models showed that none of the analyzed variables had a significant impact on the SX5 Euro
 
 #### ----linear regression model for EURO STOXX 50 Index 
