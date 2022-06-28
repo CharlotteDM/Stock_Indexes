@@ -311,8 +311,7 @@ model <- lm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close
               NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes)
 summary(model)
 plot(model)
-#ggplot(data = all_indexes, aes(x = SX5Euro_close, y = Date) + geom_point() +
-        # geom_smooth(method = "lm") + labs(x = "f", y = "d"))
+
 
 allmodels <- ols_step_all_possible(model)
 ols_step_both_aic(model) #stepwise summary

@@ -31,6 +31,8 @@ source("stock_indexes_analysis.R")
 - __EURO STOCK 50__,
 - __VIX__
 
+## I performed among others: time series, multiple regression, linear regression :
+
 
 ***
 
