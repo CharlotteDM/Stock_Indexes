@@ -338,9 +338,20 @@ model6 <- lm(SX5Euro_Close ~ DJ_Close, data = all_indexes)
 multiplot <- multiplot(model1, model2, model3, model4, model5, model6, 
                        pointSize = 2) #the graph of the coefficients for the various models showed that none of the analyzed variables had a significant impact on the SX5 Euro
 
+#ANOVA
+all_indexes_nona <- na.omit(all_indexes) #we shoul delete all NA observations
+model1nona <- lm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close + 
+               NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes_nona)
+model2nona <-  lm(SX5Euro_Close ~ DJ_Close +  FTSE100_Close + NASDAQ_Close + 
+                SP500_Close + VIX_Close, data = all_indexes_nona)
+model3nona <-  lm(SX5Euro_Close ~ VIX_Close + NASDAQ_Close + SP500_Close, data = all_indexes_nona)
+model4nona <-  lm(SX5Euro_Close ~ VIX_Close + FTSE100_Close, data = all_indexes_nona)
+model5nona <- lm(SX5Euro_Close ~ NIKKEI_Close + FTSE_Close, data = all_indexes_nona)
+model6nona <- lm(SX5Euro_Close ~ DJ_Close, data = all_indexes_nona)
+anova(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona) #first model is the best
 
 #Bayesian Information Criterion
 BIC(model1, model2, model3, model4, model5, model6) #the best is first model
-
+AIC(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona)
 
 #### ----linear regression model for EURO STOXX 50 Index 
