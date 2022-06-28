@@ -114,7 +114,19 @@ A time series is an ordered set of measurements taken at regular intervals, an i
 plotSX5Euro
 ```
 
+Then it was done time series evaluation using autocovariance (acf function) and partial autocovariance (pacf function). Autocovariance presents the correlation of the time series with itself shifted by a certain time interval. In turn, partial autovariance is the size of the correlation between the time series and its shift (Lander, 2018, s.404).
 
+This plot shows result of autocovariance:
+
+``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+acf(tsSX5Euro) 
+```
+
+This plot shows result of partial autocovariance:
+
+``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+acf(tsSX5Euro) 
+```
 
 
 
