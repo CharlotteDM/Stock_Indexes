@@ -39,14 +39,68 @@ __Dow Jones Industrial Average__  is:
 > "a stock index that tracks 30 of the largest U.S. companies. Created in 1896, it is one of the oldest stock indexes, and its performance is widely considered to be a useful indicator of the health of the entire U.S. stock market".
 
 (source of definition: https://www.fool.com/investing/stock-market/indexes/dow-jones/;
+
 source of data: https://www.wsj.com/market-data/quotes/index/DJIA/historical-prices )
 
 __FTSE China A50__  is:
 
-> "a stock index that tracks 30 of the largest U.S. companies".
+> "an index for 50 stocks of companies with the highest market capitalisation listed on the Shanghai and Shenzhen stock exchanges".
 
-(source of definition: https://www.fool.com/investing/stock-market/indexes/dow-jones/;
-source of data: https://www.wsj.com/market-data/quotes/index/DJIA/historical-prices )
+(source of definition: https://www.avatrade.com/trading-info/financial-instruments-index/indices/china-a50;
+
+source of data: https://www.wsj.com/market-data/quotes/index/XX/XIN9/historical-prices )
+
+__FTSE 100__ is:
+
+> "an index composed of the 100 largest (by market capitalisation ) companies listed on the London Stock Exchange (LSE)".
+
+(source of definition: https://www.ii.co.uk/knowledge-centre/quick-guides/before-you-start/what-is-the-ftse-100;
+
+source of data: https://www.wsj.com/market-data/quotes/index/UK/UKX/historical-prices)
+
+__NASDAQ__ is:
+
+> "The first electronic stock market listing over 5000 companies. The Nasdaq stock market comprises two separate markets, namely the Nasdaq National Market, which trades large, active securities and the Nasdaq Smallcap Market that trades emerging growth companies".
+
+(source of definition: https://www.nasdaq.com/glossary/n/nasdaq-stock-market;
+
+source of data: https://www.wsj.com/market-data/quotes/index/NASDAQ/historical-prices)
+
+__NIKKEI 225__ is:
+
+> "the most recognized Japanese stock market index. It comprises Japan’s top 225 companies that are listed on the Tokyo Stock Exchange. The Nikkei Index is considered an important measure of the Japanese stock market and the performance of the Japanese economy."
+
+(source of definition: https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/nikkei-index/;
+
+source of data: https://www.wsj.com/market-data/quotes/index/JP/NIK/historical-prices)
+
+__S&P 500__ is:
+
+> "a market-capitalization-weighted index of 500 leading publicly traded companies in the U.S. It is not an exact list of the top 500 U.S. companies by market cap because there are other criteria that the index includes."
+
+(source of definition: https://www.investopedia.com/terms/s/sp500.asp;
+
+source of data: https://www.wsj.com/market-data/quotes/index/SPX/historical-prices)
+
+__EURO STOCK 50__ :
+
+> "represents the performance of the 50 largest companies among the 20 supersectors in terms of free-float market cap in Eurozone countries. The index has a fixed number of components and is part of the STOXX blue-chip index family. The index captures about 60% of the free-float market cap of the EURO STOXX Total Market Index (TMI)"
+
+(source of definition: https://www.stoxx.com/document/Bookmarks/CurrentFactsheets/SX5GT.pdf;
+
+source of data: https://www.wsj.com/market-data/quotes/index/XX/SX5E/historical-pricess)
+
+__VIX__ is:
+
+> "based on the prices of options on the S&P 500 Index and is calculated by aggregating weighted prices of the index’s call and put options over a wide range of strike prices."
+
+(source of definition: https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/vix-volatility-index/;
+
+source of data: https://www.wsj.com/market-data/quotes/index/VIX/historical-prices)
+
+
+
+
 
 
 This plot presents all indexes:
