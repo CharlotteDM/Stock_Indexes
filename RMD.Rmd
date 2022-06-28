@@ -31,7 +31,7 @@ source("stock_indexes_analysis.R")
 - __EURO STOCK 50__,
 - __VIX__
 
-## I performed among others: time series, multiple regression, linear regression :
+## I performed among others: time series, multiple regression, cross validation.
 
 
 ***
@@ -101,10 +101,6 @@ __VIX__ is:
 source of data: https://www.wsj.com/market-data/quotes/index/VIX/historical-prices)
 
 
-
-
-
-
 This plot presents all indexes:
 
 ```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
@@ -112,8 +108,11 @@ all_ind_plotly
 ```
 
 
+A time series is an ordered set of measurements taken at regular intervals, an ideal example of which is the stock exchange indexes. Time series plot for EURO STOCK 50 is as follows:
 
-
+```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
+plotSX5Euro
+```
 
 
 

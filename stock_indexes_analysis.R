@@ -317,13 +317,13 @@ plot(model1)
 
 
 allmodels <- ols_step_all_possible(model1) #residuals vs fitted
-ols_step_both_aic(model) #stepwise summary
+ols_step_both_aic(model1) #stepwise summary
 
 
-ols_test_normality(model) #test K-S: p > 0,05 that is, there is no reason to reject the null hypothesis and the distribution is normal
-ols_plot_resid_hist(model) #histogram
-ols_plot_resid_qq(model) #a quantile-quantile plot shows the residual distribution and outliers
-cook <- ols_plot_cooksd_bar(model) #establishing outliers 
+ols_test_normality(model1) #test K-S: p > 0,05 that is, there is no reason to reject the null hypothesis and the distribution is normal
+ols_plot_resid_hist(model1) #histogram
+ols_plot_resid_qq(model1) #a quantile-quantile plot shows the residual distribution and outliers
+cook <- ols_plot_cooksd_bar(model1) #establishing outliers 
 
 
 #### ----- comparison of models
@@ -356,7 +356,7 @@ BIC(model1, model2, model3, model4, model5, model6) #the best is first model
 #Akaike Information Criterion
 AIC(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona) #the best is first model
 
-#Cross Validation with generalized linear models
+#Cross validation with generalized linear models
 modelG1nona<- glm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close + 
                    NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes_nona)
 modelG2nona <-  glm(SX5Euro_Close ~ DJ_Close +  FTSE100_Close + NASDAQ_Close + 
