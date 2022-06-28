@@ -338,4 +338,9 @@ model6 <- lm(SX5Euro_Close ~ DJ_Close, data = all_indexes)
 multiplot <- multiplot(model1, model2, model3, model4, model5, model6, 
                        pointSize = 2) #the graph of the coefficients for the various models showed that none of the analyzed variables had a significant impact on the SX5 Euro
 
+
+#Bayesian Information Criterion
+BIC(model1, model2, model3, model4, model5, model6) #the best is first model
+
+
 #### ----linear regression model for EURO STOXX 50 Index 
