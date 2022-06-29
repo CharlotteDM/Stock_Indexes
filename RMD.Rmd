@@ -31,7 +31,7 @@ source("stock_indexes_analysis.R")
 - __EURO STOCK 50__,
 - __VIX__
 
-## I performed among others: time series, multiple regression, cross validation.
+## For analyzis I performed among others: time series models, multiple regression, cross validation.
 
 
 ***
