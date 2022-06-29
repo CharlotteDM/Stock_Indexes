@@ -128,7 +128,22 @@ This plot shows result of partial autocovariance:
 acf(tsSX5Euro) 
 ```
 
+The number of differentiations was determined using the ndiffs function and amounted to 1. Below is the chart with the optimal number of differentiations for the Euro Stock 50 Index variable.
 
+``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+plot(diff(tsSX5Euro, 1))
+```
+
+The ARMA function showed that the optimal model for the discussed time model will be ARMA (3, 1, 3).
+The ACF and PACF for the ideal model show the white noise pattern:
+
+``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+acf(best_tsSX5Euro$residuals)
+```
+
+``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+pacf(best_tsSX5Euro$residuals)
+```
 
 ***
 
