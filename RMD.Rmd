@@ -101,7 +101,7 @@ __VIX__ is:
 source of data: https://www.wsj.com/market-data/quotes/index/VIX/historical-prices)
 
 
-This plot presents all indexes:
+This plot below presents all indexes:
 
 ```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
 all_ind_plotly
@@ -145,6 +145,23 @@ acf(best_tsSX5Euro$residuals)
 pacf(best_tsSX5Euro$residuals)
 ```
 
+This is the result of building ARIMA model(3,1,3):
+
+``` {r, echo=FALSE, error=FALSE, warning = FALSE, tidy = TRUE}
+summary(fit_tsSX5Euro)
+```
+
+
+
 ***
 
 In summary, we see fertility rate and birth rate falling over the years, while death rate and life expectancy are increasing. It is very important to follow demographic changes in countries and individual parts of the world so that governments can react early and shape their policies on public health, pro-family policies, etc.It is impossible to track demographic changes in isolation from the data on armed conflicts and the related migration of people, climate change, and the pandemic situation. 
+
+***
+Biography:
+* Lander, J. P. (2018). R dla każdego. Zaawansowane analizy i grafika statystyczna. Warszawa: APN Promise.
+
+Web sites:
+
+* Wawrowski, R. Metody przetwarzania i analizy danych w R. Pobrane z: http://www.wawrowski.edu.pl/adr/index.html (29.06.2022).
+* https://blogs.oracle.com/ai-and-datascience/post/performing-a-time-series-analysis-on-the-sampp-500-stock-index
