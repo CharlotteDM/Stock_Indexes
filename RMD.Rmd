@@ -31,7 +31,9 @@ source("stock_indexes_analysis.R")
 - __EURO STOCK 50__,
 - __VIX__
 
-## For analyzis I performed among others: time series models, multiple regression, cross validation.
+## All of data orgin from the website: www.wsj.com/market-data
+
+## For analyzis I performed among others: time series models, multiple regression, cross validation.This methods allows to predict values of stock indexes in the future. 
 
 
 ***
