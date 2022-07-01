@@ -20,7 +20,7 @@ source("stock_indexes_analysis.R")
 ```
 
 
-## This is a report about stock indexes in the world markets since February 2020 to July 2022. For this report I choose selected:
+## This is a report about stock indexes in the world markets since 24 February 2020 to 17 June 2022 (data collected since the outbreak of the pandemic in Europe until now). For this report I choose selected:
 
 - __Dow Jones Industrial Average__,
 - __FTSE China A50__,
@@ -110,17 +110,20 @@ all_ind_plotly
 ```
 
 
-A time series is an ordered set of measurements taken at regular intervals, an ideal example of which is the stock exchange indexes. Time series plot for EURO STOCK 50 is as follows:
+A time series is an ordered set of measurements taken at regular intervals, an ideal example of which is the stock exchange indexes. 
+Time series plot for EURO STOCK 50 is as follows:
 
 ```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
 plotSX5Euro
 ```
 
+In the chart, we see both negative and positive trends.
+
 Then it was done time series evaluation using autocovariance (acf function) and partial autocovariance (pacf function). Autocovariance presents the correlation of the time series with itself shifted by a certain time interval. In turn, partial autovariance is the size of the correlation between the time series and its shift (Lander, 2018, s.404).
 
 This plot shows result of autocovariance:
 
-``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+``` {r, echo=FALSE,  out.width="130%", error=FALSE, warning = FALSE}
 acf(tsSX5Euro) 
 ```
 
