@@ -197,7 +197,11 @@ class(SX5Euro$SX5Euro_Close)
 plotSX5Euro <- plot_time_series(SX5Euro, SX5Euro$Date, SX5Euro_Close, 
                                 .title = "Time Series Plot for SX5Euro",
                                 .x_lab = "Date", .y_lab = "Value")
-?plot_time_series
+
+
+
+#Augmented Dickey-Fuller Test for stationarity
+adf.test(tsSX5Euro) #is not stationary
 
 #autocovariance function
 acf(tsSX5Euro)
