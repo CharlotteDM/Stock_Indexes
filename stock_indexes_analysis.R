@@ -199,7 +199,6 @@ plotSX5Euro <- plot_time_series(SX5Euro, SX5Euro$Date, SX5Euro_Close,
                                 .x_lab = "Date", .y_lab = "Value")
 
 
-
 #Augmented Dickey-Fuller Test for stationarity
 adf.test(tsSX5Euro) #is not stationary
 
@@ -246,7 +245,7 @@ residFit_SX5Euro <- ggplot(data=fit_tsSX5Euro, aes(residuals(fit_tsSX5Euro))) +
         panel.grid.minor = element_blank(),
         axis.line   = element_line(colour="gray28"),
         axis.line.x = element_line(colour="gray28")) +
-  ggtitle("SX5 Euro Index - ARIMA Model Residuals")
+  ggtitle("EURO STOCK 50 - ARIMA Model Residuals")
 
 
 
@@ -266,9 +265,9 @@ mean(abs((SX5Euro$SX5Euro_Close-frc_SX5Euro_nm)/SX5Euro$SX5Euro_Close), na.rm=T)
 mean(abs(SX5Euro$SX5Euro_Close-frc_SX5Euro_nm), na.rm=T) #absolute mean error
 
 #plot based on naive method for SX5 Euro
-#naive_plot <- plot(SX5Euro$SX5Euro_Close, type='l', col = 'red', main='Actual vs. Forecasted',
-    # xlab='Period of time', ylab='SX5 Euro value') + lines(frc_SX5Euro_nm, type='l', col = 'green') + legend('topright', legend=c('Actual', 'Forecasted'),
-    #   col=c('red', 'green'), lty=1)
+naive_plot <- plot(SX5Euro$SX5Euro_Close, type='l', col = 'red', main='Actual vs. Forecasted',
+    xlab='Period of time', ylab='SX5 Euro value') + lines(frc_SX5Euro_nm, type='l', col = 'green') + legend('topright', legend=c('Actual', 'Forecasted'),
+     col=c('red', 'green'), lty=1)
 
 #forecast from naive method 
 n <- 100 #number of period for forecasting
