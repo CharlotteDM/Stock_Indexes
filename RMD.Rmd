@@ -111,13 +111,18 @@ all_ind_plotly
 
 
 A time series is an ordered set of measurements taken at regular intervals, an ideal example of which is the stock exchange indexes. 
+
 Time series plot for EURO STOCK 50 is as follows:
 
 ```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
 plotSX5Euro
 ```
 
-In the chart, we see both negative and positive trends.
+Augmented Dickey-Fuller Test for stationarity confirms that variable EURO STOCK 50 is non-stationary: 
+
+``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+adf.test(tsSX5Euro)
+```
 
 Then it was done time series evaluation using autocovariance (acf function) and partial autocovariance (pacf function). Autocovariance presents the correlation of the time series with itself shifted by a certain time interval. In turn, partial autovariance is the size of the correlation between the time series and its shift (Lander, 2018, s.404).
 
