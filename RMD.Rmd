@@ -118,6 +118,14 @@ Time series plot for EURO STOCK 50 is as follows:
 plotSX5Euro
 ```
 
+Time series wad broke down into: seasonal component, trend, and residuals.
+
+```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
+plot(dcmp)
+```
+
+We see some seasonal character of our data/ 
+
 Augmented Dickey-Fuller Test for stationarity confirms that variable EURO STOCK 50 is non-stationary: 
 
 ``` {r, echo=FALSE, error=FALSE, warning = FALSE}
@@ -138,13 +146,11 @@ This plot shows result of partial autocovariance:
 acf(tsSX5Euro) 
 ```
 
-The number of differentiations was determined using the ndiffs function and amounted to 1. Below is the chart with the optimal number of differentiations for the Euro Stock 50 Index variable.
+The charts confirm the non-stationary nature of the trend. Therefore, a differentiation has to be performed.
+The number of differentiations was determined using the ndiffs function and amounted to 0. 
 
-``` {r, echo=FALSE, error=FALSE, warning = FALSE}
-plot(diff(tsSX5Euro, 1))
-```
 
-The ARMA function showed that the optimal model for the discussed time model will be ARMA (3, 1, 3).
+The ARMA function showed that the optimal model for the discussed time model will be ARMA (1, 0, 0).
 The ACF and PACF for the ideal model show the white noise pattern:
 
 ``` {r, echo=FALSE, error=FALSE, warning = FALSE}
@@ -155,11 +161,30 @@ acf(best_tsSX5Euro$residuals)
 pacf(best_tsSX5Euro$residuals)
 ```
 
-This is the result of building ARIMA model(3,1,3):
+This is the result of building ARIMA model(1,0,0):
 
 ``` {r, echo=FALSE, error=FALSE, warning = FALSE, tidy = TRUE}
 summary(fit_tsSX5Euro)
 ```
+
+Plot for residuals: 
+
+``` {r, echo=FALSE, error=FALSE, warning = FALSE, tidy = TRUE}
+plot(residFit_SX5Euro)
+```
+
+This is prediction based on the ARIMA model forecasting for 24 months with the standard error:
+
+``` {r, echo=FALSE, error=FALSE, warning = FALSE, tidy = TRUE}
+plot(theForecastSX5Euro)
+```
+
+
+
+The ols_step_all_possible function allows the assessment of how different models account for VIX variability. For example if only the CDS5Y variable was taken as a predictor - it explains 57% of the VIX variability. Ols_step_both_aic function allows to observe regression using stepwise method. 
+The histogram confirms a normal distribution. The K-S test (performed with the use of the ols test normality function) allows to state that the residuals are normally distributed, which is also confirmed by the quantil-quantil plot. Outliers were determined using the Cook’s distance.
+
+
 
 
 
@@ -171,7 +196,9 @@ In summary, we see fertility rate and birth rate falling over the years, while d
 Biography:
 * Lander, J. P. (2018). R dla każdego. Zaawansowane analizy i grafika statystyczna. Warszawa: APN Promise.
 
-Web sites:
+Web references
 
 * Wawrowski, R. Metody przetwarzania i analizy danych w R. Pobrane z: http://www.wawrowski.edu.pl/adr/index.html (29.06.2022).
 * https://blogs.oracle.com/ai-and-datascience/post/performing-a-time-series-analysis-on-the-sampp-500-stock-index
+*https://pbiecek.github.io/NaPrzelajDataMiningR/part-7.html
+* https://www.statology.org/dickey-fuller-test-in-r/ (01.07.2022)

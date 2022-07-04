@@ -264,9 +264,9 @@ mean(abs((SX5Euro$SX5Euro_Close-frc_SX5Euro_nm)/SX5Euro$SX5Euro_Close), na.rm=T)
 mean(abs(SX5Euro$SX5Euro_Close-frc_SX5Euro_nm), na.rm=T) #absolute mean error
 
 #plot based on naive method for SX5 Euro
-naive_plot <- plot(SX5Euro$SX5Euro_Close, type='l', col = 'red', main='Actual vs. Forecasted',
-    xlab='Period of time', ylab='SX5 Euro value') + lines(frc_SX5Euro_nm, type='l', col = 'green') + legend('topright', legend=c('Actual', 'Forecasted'),
-     col=c('red', 'green'), lty=1)
+#naive_plot <- plot(SX5Euro$SX5Euro_Close, type='l', col = 'red', main='Actual vs. Forecasted',
+  #  xlab='Period of time', ylab='SX5 Euro value') + lines(frc_SX5Euro_nm, type='l', col = 'green') + legend('topright', legend=c('Actual', 'Forecasted'),
+   #  col=c('red', 'green'), lty=1)
 
 #forecast from naive method 
 n <- 100 #number of period for forecasting
@@ -293,22 +293,22 @@ all_close <- all_qtrly %>%
 
 ## ----interactive plot for SX5 Euro
 
-sx5e <- all_indexes %>%
-  hchart(type = "line", color = "red", 
-    hcaes(x = Date, y = SX5Euro_Close)) %>%
-  hc_credits(enabled = TRUE, 
-             text = "Sources: https://www.wsj.com/market-data",
-             style = list(fontSize = "10px")) %>%
-  hc_title (text = "The EURO STOXX 50 Index") %>%
-  hc_tooltip(valueDecimals = 4,
-             pointFormat = "Value of EURO STOXX 50 Index: {point.y}") 
+#sx5e <- all_indexes %>%
+ # hchart(type = "line", color = "red", 
+   # hcaes(x = Date, y = SX5Euro_Close)) %>%
+  #hc_credits(enabled = TRUE, 
+    #         text = "Sources: https://www.wsj.com/market-data",
+    #         style = list(fontSize = "10px")) %>%
+#  hc_title (text = "The EURO STOXX 50 Index") %>%
+ # hc_tooltip(valueDecimals = 4,
+         #    pointFormat = "Value of EURO STOXX 50 Index: {point.y}") 
 
 
 #2attempt
-highchart(type="stock") %>% 
-  hc_add_series(all_indexes$SX5Euro_Close, type = "line",
-                color = "red") %>% 
-  hc_title(text="<b>SX5 Euro</b>") #work but we have problems with date
+ # highchart(type="stock") %>% 
+ # hc_add_series(all_indexes$SX5Euro_Close, type = "line",
+  #              color = "red") %>% 
+ # hc_title(text="<b>SX5 Euro</b>") #work but we have problems with date
 
 
 #### ------multiple regression model for EURO STOXX 50 Index 
