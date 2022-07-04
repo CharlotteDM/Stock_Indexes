@@ -142,7 +142,7 @@ acf(tsSX5Euro)
 
 This plot shows result of partial autocovariance:
 
-``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE}
 acf(tsSX5Euro) 
 ```
 
@@ -153,29 +153,29 @@ The number of differentiations was determined using the ndiffs function and amou
 The ARMA function showed that the optimal model for the discussed time model will be ARMA (1, 0, 0).
 The ACF and PACF for the ideal model show the white noise pattern:
 
-``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE}
 acf(best_tsSX5Euro$residuals)
 ```
 
-``` {r, echo=FALSE, error=FALSE, warning = FALSE}
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE}
 pacf(best_tsSX5Euro$residuals)
 ```
 
 This is the result of building ARIMA model(1,0,0):
 
-``` {r, echo=FALSE, error=FALSE, warning = FALSE, tidy = TRUE}
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
 summary(fit_tsSX5Euro)
 ```
 
 Plot for residuals: 
 
-``` {r, echo=FALSE, error=FALSE, warning = FALSE, tidy = TRUE}
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
 plot(residFit_SX5Euro)
 ```
 
 This is prediction based on the ARIMA model forecasting for 24 months with the standard error:
 
-``` {r, echo=FALSE, error=FALSE, warning = FALSE, tidy = TRUE}
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
 plot(theForecastSX5Euro)
 ```
 
