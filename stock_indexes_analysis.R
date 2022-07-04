@@ -199,6 +199,11 @@ plotSX5Euro <- plot_time_series(SX5Euro, SX5Euro$Date, SX5Euro_Close,
                                 .x_lab = "Date", .y_lab = "Value")
 
 
+#decomposition of additive time series for SX5Euro
+dcmp <- decompose(as.ts(tsSX5Euro))
+plot(dcmp)
+
+
 #Augmented Dickey-Fuller Test for stationarity
 adf.test(tsSX5Euro) #is not stationary
 
@@ -248,14 +253,10 @@ residFit_SX5Euro <- ggplot(data=fit_tsSX5Euro, aes(residuals(fit_tsSX5Euro))) +
 
 
 #### -------prediction
-#prediction based on the ARIMA model forecasting for 100 days with the standard error
-predict(best_tsSX5Euro, n.ahead = 100, se.fit = T)
-theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 100)
+#prediction based on the ARIMA model forecasting for 24 months with the standard error
+predict(best_tsSX5Euro, n.ahead = 24, se.fit = T)
+theForecastSX5Euro <- forecast(object = best_tsSX5Euro, h = 24)
 plot(theForecastSX5Euro) 
-
-#decomposition of additive time series for SX5Euro
-dcmp <- decompose(as.ts(tsSX5Euro))
-plot(dcmp)
 
 #prediction based on the naive method for SX5 Euro
 frc_SX5Euro_nm <- c(NA, SX5Euro$SX5Euro_Close[-length(SX5Euro$SX5Euro_Close)])
