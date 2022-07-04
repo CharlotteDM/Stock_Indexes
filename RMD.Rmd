@@ -179,7 +179,25 @@ This is prediction based on the ARIMA model forecasting for 24 months with the s
 plot(theForecastSX5Euro)
 ```
 
+Prediction was also performed with naive forecasting method. This is a result:
 
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
+summary(naive_mod)
+```
+
+This is a plot: 
+
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
+naive_plot
+```
+
+Prediction was also performed with Holt's Trend Method:
+
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
+summary(holt_mod)
+```
+
+The predictions made by all methods were compared. MAPE turned out to be the smallest in the __ARIMA model__.
 
 The ols_step_all_possible function allows the assessment of how different models account for VIX variability. For example if only the CDS5Y variable was taken as a predictor - it explains 57% of the VIX variability. Ols_step_both_aic function allows to observe regression using stepwise method. 
 The histogram confirms a normal distribution. The K-S test (performed with the use of the ols test normality function) allows to state that the residuals are normally distributed, which is also confirmed by the quantil-quantil plot. Outliers were determined using the Cook’s distance.
@@ -194,11 +212,13 @@ In summary, we see fertility rate and birth rate falling over the years, while d
 
 ***
 Biography:
+
 * Lander, J. P. (2018). R dla każdego. Zaawansowane analizy i grafika statystyczna. Warszawa: APN Promise.
 
 Web references
 
 * Wawrowski, R. Metody przetwarzania i analizy danych w R. Pobrane z: http://www.wawrowski.edu.pl/adr/index.html (29.06.2022).
 * https://blogs.oracle.com/ai-and-datascience/post/performing-a-time-series-analysis-on-the-sampp-500-stock-index
+* https://www.pluralsight.com/guides/time-series-forecasting-using-r
 *https://pbiecek.github.io/NaPrzelajDataMiningR/part-7.html
 * https://www.statology.org/dickey-fuller-test-in-r/ (01.07.2022)
