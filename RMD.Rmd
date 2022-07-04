@@ -109,6 +109,11 @@ This plot below presents all indexes:
 all_ind_plotly
 ```
 
+This interactive plot below presents value of EURO STOCK 50:
+
+```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
+sx5e
+```
 
 A time series is an ordered set of measurements taken at regular intervals, an ideal example of which is the stock exchange indexes. 
 
@@ -197,7 +202,7 @@ Prediction was also performed with Holt's Trend Method:
 summary(holt_mod)
 ```
 
-The predictions made by all methods were compared. MAPE turned out to be the smallest in the __ARIMA model__.
+The predictions made by all methods were compared. MAPE and MAE turned out to be the smallest in the __ARIMA model__.
 
 The ols_step_all_possible function allows the assessment of how different models account for VIX variability. For example if only the CDS5Y variable was taken as a predictor - it explains 57% of the VIX variability. Ols_step_both_aic function allows to observe regression using stepwise method. 
 The histogram confirms a normal distribution. The K-S test (performed with the use of the ols test normality function) allows to state that the residuals are normally distributed, which is also confirmed by the quantil-quantil plot. Outliers were determined using the Cook’s distance.
