@@ -189,6 +189,22 @@ descr_stat = function(all_indexes) {
 
 descr_stat(all_indexes)
 
+
+
+
+## ----interactive plot for SX5 Euro
+
+sx5e <- all_indexes %>%
+  hchart(type = "line", color = "red", 
+         hcaes(x = Date, y = SX5Euro_Close)) %>%
+  hc_credits(enabled = TRUE, 
+             text = "Sources: https://www.wsj.com/market-data",
+             style = list(fontSize = "10px")) %>%
+  hc_title (text = "The EURO STOXX 50 Index") %>%
+  hc_tooltip(valueDecimals = 4,
+             pointFormat = "Value of EURO STOXX 50 Index: {point.y}") 
+
+
 ### ------- time series for one of the stock index
 #time series for SX5Euro
 tsSX5Euro <- ts(SX5Euro$SX5Euro_Close, start=c(2020, 2), end=c(2022, 6), freq=12)
@@ -274,30 +290,6 @@ naive_plot <- autoplot(frc2_SX5Euro_nm) +
 holt_mod <- holt(tsSX5Euro, h = 24)
 summary(holt_mod)
 
-#### ------- makes quarterly data
-all <- arrange(all_indexes, Date)
-all$qdate <- as.yearqtr(all$Date)
-all_qtrly <- all %>%
-  group_by(qdate) %>%
-  summarise_all(mean, na.rm = T)
-
-
-#### ------- takes only closing value
-all_close <- all_qtrly %>%
-  select("qdate", "DJ_Close", "FTSE_Close", "FTSE100_Close", "NASDAQ_Close", "NIKKEI_Close", 
-         "SP500_Close", "SX5Euro_Close", "VIX_Close")
-
-## ----interactive plot for SX5 Euro
-
-#sx5e <- all_indexes %>%
- # hchart(type = "line", color = "red", 
-   # hcaes(x = Date, y = SX5Euro_Close)) %>%
-  #hc_credits(enabled = TRUE, 
-    #         text = "Sources: https://www.wsj.com/market-data",
-    #         style = list(fontSize = "10px")) %>%
-#  hc_title (text = "The EURO STOXX 50 Index") %>%
- # hc_tooltip(valueDecimals = 4,
-         #    pointFormat = "Value of EURO STOXX 50 Index: {point.y}") 
 
 
 #2attempt
@@ -381,3 +373,19 @@ models_results$model_name <- sprintf("modelG%s", 1:6)
 
 #first model is the best
 #### ----linear regression model for EURO STOXX 50 Index 
+
+
+#### ------- makes quarterly data
+all <- arrange(all_indexes, Date)
+all$qdate <- as.yearqtr(all$Date)
+all_qtrly <- all %>%
+  group_by(qdate) %>%
+  summarise_all(mean, na.rm = T)
+
+
+#### ------- takes only closing value
+all_close <- all_qtrly %>%
+  select("qdate", "DJ_Close", "FTSE_Close", "FTSE100_Close", "NASDAQ_Close", "NIKKEI_Close", 
+         "SP500_Close", "SX5Euro_Close", "VIX_Close")
+
+
