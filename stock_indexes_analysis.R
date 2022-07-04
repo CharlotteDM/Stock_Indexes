@@ -191,7 +191,7 @@ descr_stat(all_indexes)
 
 ### ------- time series for one of the stock index
 #time series for SX5Euro
-tsSX5Euro <- ts(SX5Euro$SX5Euro_Close, start=c(2022, 1), freq=12)
+tsSX5Euro <- ts(SX5Euro$SX5Euro_Close, start=c(2020, 2), end=c(2022, 6), freq=12)
 class(SX5Euro$SX5Euro_Close)
 
 plotSX5Euro <- plot_time_series(SX5Euro, SX5Euro$Date, SX5Euro_Close, 
@@ -210,8 +210,6 @@ pacf(tsSX5Euro)
 
 #determining the optimal number of differentiations 
 ndiffs(tsSX5Euro,test="kpss",alpha=0.05)
-diff(tsSX5Euro, differences = 1)
-plot(diff(tsSX5Euro, 1))
 
 #using the auto.arima function
 best_tsSX5Euro <- auto.arima(x = tsSX5Euro)
@@ -224,7 +222,7 @@ pacf(best_tsSX5Euro$residuals)
 coef(best_tsSX5Euro)
 
 #### -------- builds a model
-fit_tsSX5Euro <- Arima(tsSX5Euro, order = c(3,1,3),
+fit_tsSX5Euro <- Arima(tsSX5Euro, order = c(1,0,0),
              include.drift = TRUE)
 summary(fit_tsSX5Euro)
 
