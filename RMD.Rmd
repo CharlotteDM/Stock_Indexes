@@ -204,6 +204,19 @@ summary(holt_mod)
 
 The predictions made by all methods were compared. MAPE and MAE turned out to be the smallest in the __ARIMA model__.
 
+Multiple regression model for EURO STOXX 50 Index 
+
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
+summary(model1)
+plot(model1)
+ols_step_both_aic(model1) 
+
+ols_test_normality(model1) 
+ols_plot_resid_hist(model1) 
+ols_plot_resid_qq(model1) 
+cook
+```
+
 The ols_step_all_possible function allows the assessment of how different models account for VIX variability. For example if only the CDS5Y variable was taken as a predictor - it explains 57% of the VIX variability. Ols_step_both_aic function allows to observe regression using stepwise method. 
 The histogram confirms a normal distribution. The K-S test (performed with the use of the ols test normality function) allows to state that the residuals are normally distributed, which is also confirmed by the quantil-quantil plot. Outliers were determined using the Cook’s distance.
 
