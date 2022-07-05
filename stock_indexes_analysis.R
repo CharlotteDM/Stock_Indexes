@@ -292,13 +292,6 @@ summary(holt_mod)
 
 
 
-#2attempt
- # highchart(type="stock") %>% 
- # hc_add_series(all_indexes$SX5Euro_Close, type = "line",
-  #              color = "red") %>% 
- # hc_title(text="<b>SX5 Euro</b>") #work but we have problems with date
-
-
 #### ------multiple regression model for EURO STOXX 50 Index 
 model1 <- lm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close + 
               NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes)
