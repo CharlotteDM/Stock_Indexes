@@ -208,7 +208,6 @@ Multiple regression model for EURO STOXX 50 Index is as follows:
 
 ``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
 summary(model1)
-plot(model1)
 ```
 
 The model explains 96% of the variability of EURO STOXX 50 Index, and all the variables used in the model are significant.
