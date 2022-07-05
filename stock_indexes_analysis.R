@@ -319,7 +319,7 @@ model5 <- lm(SX5Euro_Close ~ NIKKEI_Close + FTSE_Close, data = all_indexes)
 model6 <- lm(SX5Euro_Close ~ DJ_Close, data = all_indexes)
 
 
-multiplot <- multiplot(model1, model2, model3, model4, model5, model6, 
+multiplot_models <- multiplot(model1, model2, model3, model4, model5, model6, 
                        pointSize = 2) #the graph of the coefficients for the various models showed that none of the analyzed variables had a significant impact on the SX5 Euro
 
 #ANOVA
@@ -365,6 +365,8 @@ names(models_results) <- c("Error", "Adjusted Error")
 models_results$model_name <- sprintf("modelG%s", 1:6)
 
 #first model is the best
+
+
 #### ----linear regression model for EURO STOXX 50 Index 
 
 
