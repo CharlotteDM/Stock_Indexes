@@ -129,7 +129,7 @@ Time series wad broke down into: seasonal component, trend, and residuals.
 plot(dcmp)
 ```
 
-We see some seasonal character of our data/ 
+We see some seasonal character of our data.
 
 Augmented Dickey-Fuller Test for stationarity confirms that variable EURO STOCK 50 is non-stationary: 
 
@@ -137,7 +137,7 @@ Augmented Dickey-Fuller Test for stationarity confirms that variable EURO STOCK 
 adf.test(tsSX5Euro)
 ```
 
-Then it was done time series evaluation using autocovariance (acf function) and partial autocovariance (pacf function). Autocovariance presents the correlation of the time series with itself shifted by a certain time interval. In turn, partial autovariance is the size of the correlation between the time series and its shift (Lander, 2018, s.404).
+Then it was done time series evaluation using autocovariance (_acf_ function) and partial autocovariance (_pacf_ function). Autocovariance presents the correlation of the time series with itself shifted by a certain time interval. In turn, partial autovariance is the size of the correlation between the time series and its shift (Lander, 2018, s.404).
 
 This plot shows result of autocovariance:
 
@@ -152,10 +152,10 @@ acf(tsSX5Euro)
 ```
 
 The charts confirm the non-stationary nature of the trend. Therefore, a differentiation has to be performed.
-The number of differentiations was determined using the ndiffs function and amounted to 0. 
+The number of differentiations was determined using the _ndiffs_ function and amounted to 0. 
 
 
-The ARMA function showed that the optimal model for the discussed time model will be ARMA (1, 0, 0).
+The _arima_ function showed that the optimal model for the discussed time model will be ARMA (1, 0, 0).
 The ACF and PACF for the ideal model show the white noise pattern:
 
 ``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE}
@@ -184,7 +184,7 @@ This is prediction based on the ARIMA model forecasting for 24 months with the s
 plot(theForecastSX5Euro)
 ```
 
-Prediction was also performed with naive forecasting method. This is a result:
+Prediction was also performed with _Naive_ _Forecasting_ Method. This is a result:
 
 ``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
 summary(naive_mod)
@@ -196,7 +196,7 @@ This is a plot:
 naive_plot
 ```
 
-Prediction was also performed with Holt's Trend Method:
+Prediction was also performed with _Holt's_ _Trend_ Method:
 
 ``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
 summary(holt_mod)
@@ -204,7 +204,7 @@ summary(holt_mod)
 
 The predictions made by all methods were compared. MAPE and MAE turned out to be the smallest in the __ARIMA model__.
 
-Multiple regression model for EURO STOXX 50 Index is as follows:
+__Multiple regression__ model for EURO STOXX 50 Index is as follows:
 
 ``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
 summary(model1)
@@ -232,7 +232,7 @@ the observations are almost perfectly positioned on the straight line (except fo
 cook
 ```
 
-The Cook's plot above allows you to explore outliers.
+The _Cook's_ plot above allows you to explore outliers.
 
 
 
