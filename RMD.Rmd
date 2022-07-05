@@ -250,8 +250,8 @@ multiplot_models
 anova(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona)
 ```
 
-The smallest RSS is observed in the case of model 1. This is also confirmed by the results of AIC ( _Akaike_ _Information_ _Criterion_): __`r AIC(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona)`__
-and BIC ( _Bayesian_ _Information_ _Criterion_): __`r BIC(model1, model2, model3, model4, model5, model6)`__.
+The smallest RSS is observed in the case of model 1. This is also confirmed by the results of AIC ( _Akaike_ _Information_ _Criterion_)
+and BIC ( _Bayesian_ _Information_ _Criterion_).
 
 Due to the obsolescence of using ANOVA to test regression models (Lander, 2018, p. 337), a cross-validation with generalized linear models was also performed.
 

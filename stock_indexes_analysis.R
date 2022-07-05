@@ -360,7 +360,7 @@ modelCV6 <- cv.glm(all_indexes_nona, modelG6nona, K = 5)
 
 models_results <- as.data.frame(rbind(modelCV1$delta, modelCV2$delta, modelCV3$delta,
                                       modelCV4$delta, modelCV5$delta, modelCV6$delta))
-names(models_results) <- c("Error", "Adjusted Error", "Model Name")
+names(models_results) <- c("Error", "Adjusted Error")
 models_results$model_name <- sprintf("modelG%s", 1:6)
 
 #first model is the best
