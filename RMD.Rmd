@@ -230,9 +230,14 @@ The _Cook's_ plot above allows you to explore outliers.
 
 Multiple regression models were also compared. The following regression models were built:
 
-```{r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
-kable(list_models, col.names = c("Names of model", "Variables in model"))
-```
+* model1 <- lm(SX5Euro_Close ~ DJ_Close + FTSE_Close + FTSE100_Close + NASDAQ_Close + 
+              NIKKEI_Close + SP500_Close + VIX_Close, data = all_indexes)
+* model2 <-  lm(SX5Euro_Close ~ DJ_Close +  FTSE100_Close + NASDAQ_Close + 
+            SP500_Close + VIX_Close, data = all_indexes)
+* model3 <-  lm(SX5Euro_Close ~ VIX_Close + NASDAQ_Close + SP500_Close, data = all_indexes)
+* model4 <-  lm(SX5Euro_Close ~ VIX_Close + FTSE100_Close, data = all_indexes)
+* model5 <- lm(SX5Euro_Close ~ NIKKEI_Close + FTSE_Close, data = all_indexes)
+* model6 <- lm(SX5Euro_Close ~ DJ_Close, data = all_indexes)
 
 They were visualized using the multiplot function.
 
@@ -240,6 +245,21 @@ They were visualized using the multiplot function.
 multiplot_models
 ```
 
+
+``` {r, echo=FALSE,  error=FALSE, warning = FALSE, tidy = TRUE}
+anova(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona)
+```
+
+The smallest RSS is observed in the case of model 1. This is also confirmed by the results of AIC ( _Akaike_ _Information_ _Criterion_): __`r AIC(model1nona, model2nona, model3nona, model4nona, model5nona, model6nona)`__
+and BIC ( _Bayesian_ _Information_ _Criterion_): __`r BIC(model1, model2, model3, model4, model5, model6)`__.
+
+Due to the obsolescence of using ANOVA to test regression models (Lander, 2018, p. 337), a cross-validation with generalized linear models was also performed.
+
+``` {r, echo=FALSE,  error=FALSE, warning = FALSE, tidy = TRUE}
+models_results
+```
+
+It has been shown once again that the first model is characterized by the lowest error value.
 
 ***
 
