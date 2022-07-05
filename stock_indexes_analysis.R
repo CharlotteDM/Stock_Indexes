@@ -24,6 +24,7 @@ library(ggfortify)
 #install.packages("coefplot")
 library(coefplot)
 library(boot)
+library(GGally)
 
 path <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(path)
@@ -60,6 +61,11 @@ NIKKEI <- read.csv("NIKKEI225.csv", stringsAsFactors = F)
 #loading data: FTSE 100
 #data source: https://www.wsj.com/market-data/quotes/index/UK/UKX/historical-prices
 FTSE100 <-read.csv("FTSE100.csv", stringsAsFactors = F)
+
+#loading data: GDP_Euro_quart
+#source of data: https://ec.europa.eu/eurostat/databrowser/view/NAIDQ_10_GDP/default/table?lang=en
+GDP_Euro_quart <- read.csv("GDP_EURO_2020_2022.csv", stringsAsFactors = F)
+
 
 
 #converts character value as a date
@@ -366,7 +372,9 @@ models_results$model_name <- sprintf("modelG%s", 1:6)
 #first model is the best
 
 
-#### ----linear regression model for EURO STOXX 50 Index 
+#### ----linear regression model for EURO STOXX 50 Index and another variables
+
+ggpair()
 
 
 #### ------- makes quarterly data
