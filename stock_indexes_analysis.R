@@ -391,3 +391,6 @@ all_close <- all_qtrly %>%
          "SP500_Close", "SX5Euro_Close", "VIX_Close")
 
 
+#### ------- joins data frame
+qdate&all_close
+all_close_gdp <- left_join(all_close, GDP_Euro_quart, by = c("qdate"="TIME_PERIOD"))
