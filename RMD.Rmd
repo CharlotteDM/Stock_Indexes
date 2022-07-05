@@ -172,12 +172,6 @@ This is the result of building ARIMA model(1,0,0):
 summary(fit_tsSX5Euro)
 ```
 
-Plot for residuals: 
-
-``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
-plot(residFit_SX5Euro)
-```
-
 This is prediction based on the ARIMA model forecasting for 24 months with the standard error:
 
 ``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
