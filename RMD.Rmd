@@ -228,9 +228,17 @@ cook
 
 The _Cook's_ plot above allows you to explore outliers.
 
+Multiple regression models were also compared. The following regression models were built:
 
+```{r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
+kable(list_models, col.names = c("Names of model", "Variables in model"))
+```
 
+They were visualized using the multiplot function.
 
+``` {r, echo=FALSE, out.width="130%", error=FALSE, warning = FALSE, tidy = TRUE}
+multiplot_models
+```
 
 
 ***
