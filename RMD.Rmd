@@ -240,9 +240,14 @@ In summary, we see fertility rate and birth rate falling over the years, while d
 ***
 References:
 
+* Biecek, P., Trajkowski, K. (2019). Na przełaj przez Data Mining z pakietem R. Retrived from:  https://pbiecek.github.io/NaPrzelajDataMiningR/part-7.html (05.07.2022).
+* Eulogio, R. (2018). Performing a Time-Series Analysis on the S&P 500 Stock Index. 
+Retrived from:  https://blogs.oracle.com/ai-and-datascience/post/performing-a-time-series-analysis-on-the-sampp-500-stock-index (30.06.2022).
+* Long, D. (2019). R Cookbook, 2nd Edition. Retrived from: https://rc2e.com (05.07.2022).
 * Lander, J. P. (2018). R dla każdego. Zaawansowane analizy i grafika statystyczna. Warszawa: APN Promise.
+* Singh, D. (2019). Time seres forecasting using R. Retrived from: https://www.pluralsight.com/guides/time-series-forecasting-using-r (30.06.2022).
+* Statology (2021). Retrived from: https://www.statology.org/dickey-fuller-test-in-r/ (01.07.2022).
 * Wawrowski, R. Metody przetwarzania i analizy danych w R. Retrieved from: http://www.wawrowski.edu.pl/adr/index.html (29.06.2022).
-* https://blogs.oracle.com/ai-and-datascience/post/performing-a-time-series-analysis-on-the-sampp-500-stock-index
-* https://www.pluralsight.com/guides/time-series-forecasting-using-r
-*https://pbiecek.github.io/NaPrzelajDataMiningR/part-7.html
-* https://www.statology.org/dickey-fuller-test-in-r/ (01.07.2022)
+
+
+
