@@ -368,11 +368,7 @@ models_results <- as.data.frame(rbind(modelCV1$delta, modelCV2$delta, modelCV3$d
                                       modelCV4$delta, modelCV5$delta, modelCV6$delta))
 names(models_results) <- c("Error", "Adjusted Error")
 models_results$model_name <- sprintf("modelG%s", 1:6)
-
 #first model is the best
-
-
-#### ----linear regression model for EURO STOXX 50 Index and another variables
 
 
 #### ------- makes quarterly data
@@ -392,6 +388,12 @@ TIME_PERIOD <- c("2020-Q1", "2020-Q2", "2020-Q3", "2020-Q4", "2021-Q1", "2021-Q2
 all_close$TIME_PERIOD <- TIME_PERIOD 
 all_close_gdp <- left_join(all_close, GDP_Euro_quart, by = c("TIME_PERIOD"="TIME_PERIOD"))
 
-#correlation
+#### -----correlation
 cor(all_close_gdp$SX5Euro_Close, all_close_gdp$OBS_VALUE, use = "complete.obs")
+
+
+#### ----linear regression model for EURO STOXX 50 Index and another variables
+regr <- lm(SX5Euro_Close ~ OBS_VALUE, data = all_close_gdp)
+summary(regr)
+
 
