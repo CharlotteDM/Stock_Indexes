@@ -1,12 +1,12 @@
 ---
-title: "Stock_Indexes"
+title: "How to predict the values of stock market indices using the EURO STOCK 50 index as an example"
 author: "Karolina DM"
 date: '2022-06-27'
 output: html_document
 ---
 
 ---
-title: "Stock Indexes"
+title: "How to predict the values of stock market indices using the EURO STOCK 50 index as an example"
 author: "Karolina DM"
 output: html_document
 ---
@@ -278,7 +278,7 @@ GDP explains 69% of the variance in the index EURO STOCK 50.
 
 ***
 
-In summary, we see fertility rate and birth rate falling over the years, while death rate and life expectancy are increasing. It is very important to follow demographic changes in countries and individual parts of the world so that governments can react early and shape their policies on public health, pro-family policies, etc.It is impossible to track demographic changes in isolation from the data on armed conflicts and the related migration of people, climate change, and the pandemic situation. 
+In summary, the calculations do not exhaust all possibilities. They are only an example and inspiration for similar calculations.
 
 ***
 References:
