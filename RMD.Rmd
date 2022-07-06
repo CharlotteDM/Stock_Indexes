@@ -261,6 +261,12 @@ models_results
 
 It has been shown once again that the first model is characterized by the lowest error value.
 
+The correlation between the index __EURO STOCK 50__
+and __GDP__ in Europe was also checked. For this purpose, the data was converted into quarterly data. Data on quarterly __GDP__ was downloaded from the website: https://ec.europa.eu/eurostat/databrowser/view/NAIDQ_10_GDP/default/table?lang=en
+
+Correlation between __EURO STOCK 50__ and __GDP__ is
+__`r cor(all_close_gdp$SX5Euro_Close, all_close_gdp$OBS_VALUE, use = "complete.obs")`__ - it is a high correlation.
+
 ***
 
 In summary, we see fertility rate and birth rate falling over the years, while death rate and life expectancy are increasing. It is very important to follow demographic changes in countries and individual parts of the world so that governments can react early and shape their policies on public health, pro-family policies, etc.It is impossible to track demographic changes in isolation from the data on armed conflicts and the related migration of people, climate change, and the pandemic situation. 
@@ -268,14 +274,14 @@ In summary, we see fertility rate and birth rate falling over the years, while d
 ***
 References:
 
-* Biecek, P., Trajkowski, K. (2019). Na przełaj przez Data Mining z pakietem R. Retrived from:  https://pbiecek.github.io/NaPrzelajDataMiningR/part-7.html (05.07.2022).
+* Biecek, P., Trajkowski, K. (2019). Na przełaj przez Data Mining z pakietem R. Downloaded from:  https://pbiecek.github.io/NaPrzelajDataMiningR/part-7.html (05.07.2022).
 * Eulogio, R. (2018). Performing a Time-Series Analysis on the S&P 500 Stock Index. 
-Retrived from:  https://blogs.oracle.com/ai-and-datascience/post/performing-a-time-series-analysis-on-the-sampp-500-stock-index (30.06.2022).
-* Long, D. (2019). R Cookbook, 2nd Edition. Retrived from: https://rc2e.com (05.07.2022).
+Downloaded from:  https://blogs.oracle.com/ai-and-datascience/post/performing-a-time-series-analysis-on-the-sampp-500-stock-index (30.06.2022).
+* Long, D. (2019). R Cookbook, 2nd Edition. Downloaded from: https://rc2e.com (05.07.2022).
 * Lander, J. P. (2018). R dla każdego. Zaawansowane analizy i grafika statystyczna. Warszawa: APN Promise.
-* Singh, D. (2019). Time seres forecasting using R. Retrived from: https://www.pluralsight.com/guides/time-series-forecasting-using-r (30.06.2022).
-* Statology (2021). Retrived from: https://www.statology.org/dickey-fuller-test-in-r/ (01.07.2022).
-* Wawrowski, R. Metody przetwarzania i analizy danych w R. Retrieved from: http://www.wawrowski.edu.pl/adr/index.html (29.06.2022).
+* Singh, D. (2019). Time seres forecasting using R. Downloaded from: https://www.pluralsight.com/guides/time-series-forecasting-using-r (30.06.2022).
+* Statology (2021). Downloaded from: https://www.statology.org/dickey-fuller-test-in-r/ (01.07.2022).
+* Wawrowski, R. Metody przetwarzania i analizy danych w R. Downloaded from: http://www.wawrowski.edu.pl/adr/index.html (29.06.2022).
 
 
 

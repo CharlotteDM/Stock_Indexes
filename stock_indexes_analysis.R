@@ -374,8 +374,6 @@ models_results$model_name <- sprintf("modelG%s", 1:6)
 
 #### ----linear regression model for EURO STOXX 50 Index and another variables
 
-ggpair()
-
 
 #### ------- makes quarterly data
 all <- arrange(all_indexes, Date)
