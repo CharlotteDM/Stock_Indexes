@@ -394,5 +394,6 @@ TIME_PERIOD <- c("2020-Q1", "2020-Q2", "2020-Q3", "2020-Q4", "2021-Q1", "2021-Q2
 all_close$TIME_PERIOD <- TIME_PERIOD 
 all_close_gdp <- left_join(all_close, GDP_Euro_quart, by = c("TIME_PERIOD"="TIME_PERIOD"))
 
-
+#correlation
+cor(all_close_gdp$SX5Euro_Close, all_close_gdp$OBS_VALUE, use = "complete.obs")
 
