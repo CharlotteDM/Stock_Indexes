@@ -384,13 +384,15 @@ all_qtrly <- all %>%
   group_by(qdate) %>%
   summarise_all(mean, na.rm = T)
 
-
 #### ------- takes only closing value
 all_close <- all_qtrly %>%
   select("qdate", "DJ_Close", "FTSE_Close", "FTSE100_Close", "NASDAQ_Close", "NIKKEI_Close", 
          "SP500_Close", "SX5Euro_Close", "VIX_Close")
 
-
 #### ------- joins data frame
-qdate&all_close
-all_close_gdp <- left_join(all_close, GDP_Euro_quart, by = c("qdate"="TIME_PERIOD"))
+TIME_PERIOD <- c("2020-Q1", "2020-Q2", "2020-Q3", "2020-Q4", "2021-Q1", "2021-Q2", "2021-Q3", "2021-Q4", "2022-Q1", "NA") 
+all_close$TIME_PERIOD <- TIME_PERIOD 
+all_close_gdp <- left_join(all_close, GDP_Euro_quart, by = c("TIME_PERIOD"="TIME_PERIOD"))
+
+
+
