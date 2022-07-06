@@ -103,13 +103,13 @@ __VIX__ is:
 source of data: https://www.wsj.com/market-data/quotes/index/VIX/historical-prices)
 
 
-This plot below presents all indexes:
+This plot below presents all indexes (hover over a dot on chart for more information):
 
 ```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
 all_ind_plotly
 ```
 
-This interactive plot below presents value of EURO STOCK 50:
+This interactive plot below presents value of EURO STOCK 50 (hover over a dot on chart for more information):
 
 ```{r, dev='png', out.width="130%", echo=FALSE, warning = FALSE}
 sx5e
